@@ -76,76 +76,40 @@
                 </div>
                 <!--//recipe-->
                 <!--comments-->
-                <div class="comments" id="comments">
-                    <h2>5 comments </h2>
-                    <ol class="comment-list">
-                        <!--comment-->
-                        <li class="comment depth-1">
-                            <div class="avatar"><a href="my_profile.html"><img src="images/avatar1.jpg" alt="" /></a></div>
-                            <div class="comment-box">
-                                <div class="comment-author meta">
-                                    <strong>Kimberly C.</strong> said 1 month ago <a href="#" class="comment-reply-link"> Reply</a>
-                                </div>
-                                <div class="comment-text">
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <!--//comment-->
-                        <!--comment-->
-                        <li class="comment depth-1">
-                            <div class="avatar"><a href="my_profile.html"><img src="images/avatar2.jpg" alt="" /></a></div>
-                            <div class="comment-box">
-                                <div class="comment-author meta">
-                                    <strong>Alex J.</strong> said 1 month ago <a href="#" class="comment-reply-link"> Reply</a>
-                                </div>
-                                <div class="comment-text">
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <!--//comment-->
-                        <!--comment-->
-                        <li class="comment depth-2">
-                            <div class="avatar"><a href="my_profile.html"><img src="images/avatar1.jpg" alt="" /></a></div>
-                            <div class="comment-box">
-                                <div class="comment-author meta">
-                                    <strong>Kimberly C.</strong> said 1 month ago <a href="#" class="comment-reply-link"> Reply</a>
-                                </div>
-                                <div class="comment-text">
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <!--//comment-->
-                        <!--comment-->
-                        <li class="comment depth-3">
-                            <div class="avatar"><a href="my_profile.html"><img src="images/avatar2.jpg" alt="" /></a></div>
-                            <div class="comment-box">
-                                <div class="comment-author meta">
-                                    <strong>Alex J.</strong> said 1 month ago <a href="#" class="comment-reply-link"> Reply</a>
-                                </div>
-                                <div class="comment-text">
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <!--//comment-->
-                        <!--comment-->
-                        <li class="comment depth-1">
-                            <div class="avatar"><a href="my_profile.html"><img src="images/avatar3.jpg" alt="" /></a></div>
-                            <div class="comment-box">
-                                <div class="comment-author meta">
-                                    <strong>Denise M.</strong> said 1 month ago <a href="#" class="comment-reply-link"> Reply</a>
-                                </div>
-                                <div class="comment-text">
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <!--//comment-->
-                    </ol>
-                </div>
+                @if (@Model.Yorum != null)
+                {
+                    foreach (var yorum in @Model.Yorum)
+                    {
+                        <div class="comments" id="comments">
+                            <h2>5 comments </h2>
+                            <ol class="comment-list">
+                                <!--comment-->
+                                <li class="comment depth-1">
+                                    <div class="avatar"><a href="my_profile.html"><img src="images/avatar1.jpg" alt="" /></a></div>
+                                    <div class="comment-box">
+                                        <div class="comment-author meta">
+                                            <strong>@yorum.ad</strong> @yorum.tarih 
+                                        </div>
+                                        <div class="comment-text">
+                                            @if (yorum.icerik.Length<=0)
+                                            {
+                                            <p class="alert-info">yorum yok</p>
+                                            }
+                                            else
+                                            {
+                                            <p >@yorum.icerik</p>
+                                            }
+
+                                        </div>
+                                    </div>
+                                </li>
+                                <!--//comment-->
+                            </ol>
+                        </div>
+                    }
+                }
+
+
                 <!--//comments-->
                 <!--respond-->
                 <div class="comment-respond" id="respond">
@@ -154,42 +118,26 @@
                         <p><strong>Note:</strong> Comments on the web site reflect the views of their authors, and not necessarily the views of the socialchef internet portal. Requested to refrain from insults, swearing and vulgar expression. We reserve the right to delete any comment without notice explanations.</p>
                         <p>Your email address will not be published. Required fields are signed with <span class="req">*</span></p>
                         <form>
-                            <div class="f-row">
-                                <div class="third">
-                                    <input type="text" placeholder="Your name" />
-                                    <span class="req">*</span>
+                            @using (Html.BeginForm())
+                            {
+                                <div class="f-row">
+                                    <div class="third">
+                                        <input type="text" name="ad" placeholder="isminizi  giriniz" />
+                                        <span class="req">*</span>
+                                    </div>
+                                </div>
+                                <div class="f-row" name="icerik">
+                                    <textarea></textarea>
                                 </div>
 
-                                <div class="third">
-                                    <input type="email" placeholder="Your email" />
-                                    <span class="req">*</span>
+                                <div class="f-row">
+                                    <div class="third bwrap">
+                                        <input type="submit" name="@Model.yemekID" value="Ekle" />
+                                    </div>
                                 </div>
+                                
+                            }
 
-                                <div class="third">
-                                    <input type="text" placeholder="Your website" />
-                                </div>
-
-                            </div>
-                            <div class="f-row">
-                                <textarea></textarea>
-                            </div>
-
-                            <div class="f-row">
-                                <div class="third bwrap">
-                                    <input type="submit" value="Submit comment" />
-                                </div>
-                            </div>
-
-                            <div class="bottom">
-                                <div class="f-row checkbox">
-                                    <input type="checkbox" id="ch1" />
-                                    <label for="ch1">Notify me of replies to my comment via e-mail</label>
-                                </div>
-                                <div class="f-row checkbox">
-                                    <input type="checkbox" id="ch2" />
-                                    <label for="ch2">Notify me of new articles by email.</label>
-                                </div>
-                            </div>
                         </form>
                     </div>
                 </div>
@@ -222,7 +170,7 @@
                 </div>
 
                 <div class="widget members">
-                    
+
                     @Html.Action("KullaniciLar", "Anasayfa")
                 </div>
             </aside>

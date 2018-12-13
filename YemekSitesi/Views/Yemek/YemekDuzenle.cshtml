@@ -37,6 +37,10 @@
                     @Html.TextBoxFor(x => x.ad, new { @class = "form-control", placeholder = "Tarif adını giriniz" })
                 </div>
                 <div class="form-group">
+                    @Html.LabelFor(x => x.aciklama)
+                    @Html.TextBoxFor(x => x.aciklama, new { @class = "form-control", placeholder = "Aciklama giriniz" })
+                </div>
+                <div class="form-group">
                     @Html.LabelFor(x => x.kacKisilik)
                     @Html.TextBoxFor(x => x.kacKisilik, new { @class = "form-control", @placeholder = "Kaç kisilik" })
                 </div>

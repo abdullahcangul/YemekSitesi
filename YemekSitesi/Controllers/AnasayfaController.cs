@@ -92,11 +92,23 @@ namespace YemekSitesi.Controllers
         {
             return View(new Kullanici());
         }
-        public ActionResult Bul()
+        public ActionResult Arama(int? id)
         {
-
-            return View();
+            ViewBag.kategoriler = db.Kategori.ToList();
+            if (id != null)
+            {
+                return View(db.Yemek.Where(x => x.Kategori.kategoriID == id).ToList());
+            }
+            
+            return View(db.Yemek.ToList());
         }
+        [HttpPost]
+        public ActionResult Arama(string ad)
+        {
+            ViewBag.kategoriler = db.Kategori.ToList();
+            return View(db.Yemek.Where(x => x.ad.Contains(ad)).ToList());
+        }
+
         [HttpPost]
         public ActionResult KayıtOl(Kullanici k, HttpPostedFileBase resimGelen)
         {

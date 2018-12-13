@@ -19,7 +19,6 @@ namespace YemekSitesi.Content
             List<Kullanici> k = db.Kullanici.OrderByDescending(x=>x.Yemek.Count).ToList();
             List<Blog> b = db.Blog.ToList();
             List<Yorum> y = db.Yorum.ToList();
-            List<YorumCevap> yc = db.YorumCevap.ToList();
             List<Yemek> ye = db.Yemek.ToList();
             hm.kullaniciSayisi=k.Count();
             hm.blogSayisi =b.Count();

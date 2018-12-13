@@ -1,0 +1,93 @@
+﻿@model List<Yemek>
+@{
+    ViewBag.Title = "Arama";
+    Layout = "~/Views/Shared/_LayoutKullanici.cshtml";
+}
+
+<main class="main" role="main">
+    <!--wrap-->
+    <div class="wrap clearfix">
+        <!--breadcrumbs-->
+        <nav class="breadcrumbs">
+            <ul>
+                <li><a href="index-2.html" title="Home">Home</a></li>
+                <li>Search for Recipes</li>
+            </ul>
+        </nav>
+        <!--//breadcrumbs-->
+        <!--row-->
+        <div class="row">
+            <header class="s-title">
+                <h1>Search for Recipes</h1>
+            </header>
+
+            <!--content-->
+            <section class="content full-width">
+                <!--recipefinder-->
+                <div class="container recipefinder">
+
+                    <div class="">
+                        <div class="ingredients">
+                            <h3>Kategoriye göre arama</h3>
+                            @foreach (Kategori kategori in ViewBag.kategoriler)
+                            {
+                                <a href="/Anasayfa/Arama/@kategori.kategoriID" class="button gold">@kategori.kategoriAdi</a>
+                            }
+
+                        </div>
+                        @using (Html.BeginForm())
+                        {
+                            <h3>Tarif Adına göre Arama</h3>
+                            <div class="row">
+                                <div col-md-4>
+                                    <div class="search ">
+                                        <input type="search" name="ad" placeholder="tarif adi giriniz...">
+
+                                    </div>
+                                </div>
+                                <div col-md-2 style="margin-top:10px">
+                                    <div>
+                                        <input class="btn btn-danger" type="submit" value="Arama">
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+                <!--//recipefinder-->
+                <!--results-->
+                <div class="entries row">
+                    <!--item-->
+                    @foreach (var yemek in Model)
+                    {
+                    <div class="entry one-fourth">
+                        <figure>
+                            <img src="/Content/Resimler/Yemekler/@yemek.resim" alt="@yemek.ad">
+                            <figcaption><a href="/Anasayfa/Tarif/@yemek.yemekID"><i class="icon icon-themeenergy_eye2"></i> <span>Gözat</span></a></figcaption>
+                        </figure>
+                        <div class="container">
+                            <h2><a href="href=/Anasayfa/Tarif/@yemek.yemekID">@yemek.ad</a></h2>
+                            <div class="actions">
+                                <div>
+                                    <div class="difficulty"><i class="ico i-medium"></i><a href="#">@yemek.ZorlukDerecesi.zorlukTanımı</a></div>
+                                    <div class="likes"><i class="fa fa-heart"></i><a href="#">10</a></div>
+                                    <div class="comments"><i class="fa fa-comment"></i><a href="/Anasayfa/Tarif/@yemek.yemekID#comments">@yemek.Yorum.Count</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                    
+                    <!--item-->
+
+                 
+                </div>
+                <!--//results-->
+            </section>
+            <!--//content-->
+        </div>
+        <!--//row-->
+    </div>
+    <!--//wrap-->
+</main>

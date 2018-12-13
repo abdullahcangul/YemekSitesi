@@ -2150,6 +2150,7 @@
     <Content Include="Views\Anasayfa\KayıtOl.cshtml" />
     <Content Include="Views\Anasayfa\Giris.cshtml" />
     <Content Include="Views\Anasayfa\Iletisim.cshtml" />
+    <Content Include="Views\Anasayfa\Arama.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -51,39 +51,7 @@
                                 <a href="/Yorumlar/YorumSil/@yorum.yorumID" onclick="return confirm('Silmek istediğinizden emin misiniz ?')" class="btn btn-danger btn-xs"><i class="icon-trash "></i></a>
                             </td>
                         </tr>
-                        if (yorum.YorumCevap != null)
-                        {
-                            foreach (var cevap in yorum.YorumCevap)
-                            {
-                        <tr>
-                            <td><a href="#">@cevap.ad</a></td>
-                            @if (yorum.icerik.Length <= 10)
-                            {
-                                <td><a href="#">@yorum.icerik</a></td>
-
-                            }
-                            else
-                            {
-                                <td><a href="#">@yorum.icerik.Substring(0, 10)</a></td>
-                            }
-                            <td>@cevap.tarih</td>
-                            @if (@cevap.cevapOnaylimi == true)
-                            {
-                                <td><a href="#">Onaylı</a></td>
-
-                            }
-                            else
-                            {
-                                <td><a href="#">Onaysız</a></td>
-                            }
-                            <td> </td>
-                            <td>
-                                <a href="/Yorumlar/YorumCevapDetay/@cevap.YorumCevapID" class="btn btn-success btn-xs"><i class="icon-ok"></i></a>
-                                <a href="/Yorumlar/YorumCevapSil/@cevap.YorumCevapID" onclick="return confirm('Silmek istediğinizden emin misiniz ?')" class="btn btn-danger btn-xs"><i class="icon-trash "></i></a>
-                            </td>
-                        </tr>
-                            }
-                        }
+                      
 
                     }
                 </tbody>

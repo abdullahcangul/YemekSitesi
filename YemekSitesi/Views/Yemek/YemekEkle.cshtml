@@ -37,6 +37,10 @@
                     @Html.TextBoxFor(x => x.ad, new { @class = "form-control", placeholder = "Tarif adını giriniz" })
                 </div>
                 <div class="form-group">
+                    @Html.LabelFor(x => x.aciklama)
+                    @Html.TextBoxFor(x => x.aciklama, new { @class = "form-control", placeholder = "Aciklama  giriniz" })
+                </div>
+                <div class="form-group">
                     @Html.LabelFor(x => x.kacKisilik)
                     @Html.TextBoxFor(x => x.kacKisilik, new { @class = "form-control", @placeholder = "Kaç kisilik" })
                 </div>
@@ -60,7 +64,7 @@
                     <label>Resim</label>
                     <input type="file" name="resimGelen" class="form-control" placeholder="Resim giriniz.">
                 </div>
-                
+
                 <button type="submit" class="btn btn-info pull-right ">Ekle</button>
 
             }

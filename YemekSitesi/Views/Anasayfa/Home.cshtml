@@ -35,25 +35,18 @@
                             <p>There’s sure to be something tempting for you to try.</p>
                             <p>Enjoy!</p>
                         </div>
-                        <form action="http://www.themeenergy.com/themes/html/social-chef/find_recipe.html">
-                            <div class="f-row">
-                                <input type="text" placeholder="Enter your search term" />
-                            </div>
-                            <div class="f-row">
-                                <select>
-                                    <option>or select a category</option>
-                                    <option>Apetizers</option>
-                                    <option>Cocktails</option>
-                                    <option>Deserts</option>
-                                    <option>Main courses</option>
-                                    <option>Snacks</option>
-                                    <option>Soups</option>
-                                </select>
-                            </div>
-                            <div class="f-row bwrap">
-                                <input type="submit" value="Start cooking!" />
-                            </div>
-                        </form>
+                       
+                            @using (Html.BeginForm("Arama","Anasayfa"))
+                            {
+                                <div class="f-row">
+                                    <input type="text" name="ad" placeholder="Aramak istedigin terimi gir" />
+                                </div>
+
+                                <div class="f-row bwrap">
+                                    <input type="submit" value="Aramaya Basla!" />
+                                </div>
+                            }
+
                     </div>
                 </div>
                 <!--//search recipes widget-->

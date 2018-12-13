@@ -33,7 +33,14 @@
                                 <figcaption><a href="/Anasayfa/Tarif/@yemek.yemekID"><i class="icon icon-themeenergy_eye2"></i> <span>Gözat</span></a></figcaption>
                             </figure>
                             <div class="container">
-                                <h2><a href="recipe.html">Thai fried rice with fruit and vegetables</a></h2>
+                                @if (yemek.aciklama.Length > 20)
+                                {
+                                    <h2><a href="/Anasayfa/Tarif/@yemek.yemekID">@yemek.aciklama.Substring(0, 20)</a></h2>
+                                }
+                                else
+                                {
+                                    <h2><a href="/Anasayfa/Tarif/@yemek.yemekID">@yemek.aciklama</a></h2>
+                                }
                                 <div class="actions">
                                     <div>
                                         <div class="difficulty"><i class="ico i-medium"></i><a href="#">medium</a></div>
