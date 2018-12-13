@@ -1,0 +1,42 @@
+﻿@model List<Kategori>
+@{
+    ViewBag.Title = "KategoriListele";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="panel">
+    <header class="panel-heading">
+        Kategori Listesi
+        <a href="/Kategorik/KategoriEkle" class="btn btn-info btn-sm pull-right ">
+            <i class="fa fa-plus"></i> Yemek Ekle
+        </a>
+    </header>
+    <table class="table table-striped table-advance table-hover">
+        <thead>
+            <tr>
+
+                <th><i class="icon-bullhorn"></i>Kategori adı</th>
+                <th><i class="icon-bullhorn"></i> Resim </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var kategori in Model)
+            {
+                <tr>
+
+                    <td><a href="#">@kategori.kategoriAdi</a></td>
+                    <td class="hidden-phone">resim alani</td>
+                
+                    <td>
+                        <a href="/Kategorik/KategoriDuzenle/@kategori.kategoriID" class="btn btn-primary btn-xs"> <i class="icon-pencil"></i></a>
+                        <a href="/Kategorik/KategoriSil/@kategori.kategoriID" onclick="return confirm('Silmek istediğinizden emin misiniz ?')" class="btn btn-danger btn-xs"><i class="icon-trash "></i></a>
+
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</section>
+

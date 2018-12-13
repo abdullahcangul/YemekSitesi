@@ -1,0 +1,32 @@
+﻿@model Yorum
+@{
+    ViewBag.Title = "YorumDetay";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="panel">
+
+    <div class="panel-body bio-graph-info">
+        <h1>Yorum</h1>
+        <div class="row">
+            <div class="col-md-1">
+                <p><span>Adı</span>: @Model.ad </p>
+            </div>
+            <div class="col-md-9">
+                <p><span>Yorum icerigi: </span>: @Model.icerik</p>
+            </div>
+            <div class="col-md-1">
+                @if (Model.onaylimi == true)
+                {
+                    <a href="/Yorumlar/YorumOnay/@Model.yorumID" class="btn btn-sm btn-success">Onay Kaldır</a>
+                }
+                else
+                {
+                    <a href="/Yorumlar/YorumOnay/@Model.yorumID" class="btn btn-sm btn-danger">Onayla</a>
+                }
+
+                <a></a>
+            </div>
+        </div>
+    </div>
+</section>

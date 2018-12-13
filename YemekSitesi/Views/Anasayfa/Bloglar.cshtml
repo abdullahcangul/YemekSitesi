@@ -1,0 +1,96 @@
+﻿@model List<Blog>
+@{
+    ViewBag.Title = "Bloglar";
+    Layout = "~/Views/Shared/_LayoutKullanici.cshtml";
+}
+
+<div class="wrap clearfix">
+    <!--breadcrumbs-->
+    <nav class="breadcrumbs">
+        <ul>
+            <li><a href="index-2.html" title="Home">Home</a></li>
+            <li>Blog</li>
+        </ul>
+    </nav>
+    <!--//breadcrumbs-->
+    <!--row-->
+    <div class="row">
+        <header class="s-title">
+            <h1>Blog</h1>
+        </header>
+
+        <!--content-->
+        <section class="content three-fourth">
+            <!--blog entry-->
+            @foreach (var blog in @Model)
+            {
+                <article class="post">
+                    <div class="entry-meta">
+                        <div class="date">
+                            <span class="day">@{DateTime d = (DateTime)@blog.tarih;} @d.Day</span>
+                            <span class="my">@d.Month. @d.Year </span>
+                        </div>
+                        <div class="avatar">
+                            <a href="my_profile.html"><img src="/Content/Resimler/Kullanicilar/@blog.Kullanici.resim" alt="" /><span>@blog.Kullanici.ad @blog.Kullanici.soyad </span></a>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="entry-featured"><a href="blog_single.html"><img style="width:288.68px;height:216.5px;" src="/Content/Resimler/Bloglar/@blog.resim" alt="" /></a></div>
+                        <div class="entry-content">
+                            <h2><a href="blog_single.html">@blog.baslik</a></h2>
+                            @if (@blog.icerik.Length > 175)
+                            {
+                                <p>@blog.icerik.Substring(0, 175)...</p>
+                            }
+                            else
+                            {
+                                <p>@blog.icerik</p>
+                            }
+
+                        </div>
+                        <div class="actions">
+                            <div>
+                                <div class="category"><i class="fa fa-tags"></i><a href="#">İp Uclari ve püf noktalar</a></div>
+                                <div class="comments"><i class="fa fa-comment"></i><a href="blog_single.html#comments">27</a></div>
+                                <div class="leave_comment"><a href="blog_single.html#respond">Yorum Bırak</a></div>
+                                <div class="more"><a href="blog_single.html">Daha Fazlası</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            }
+
+
+            <!--//blog entry-->
+
+            <div class="pager">
+                <a href="#" class="current">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+            </div>
+        </section>
+        <!--//content-->
+        <!--right sidebar-->
+        <aside class="sidebar one-fourth">
+            <div class="widget">
+                <ul class="categories right">
+                    <li><a href="#">All recipes</a></li>
+                    @foreach (var item in @Model)
+                    {
+
+                        <li><a href="#">@item.Kategori.kategoriAdi</a></li>
+                    }
+                </ul>
+            </div>
+            <div class="widget">
+                <h3>Advertisment</h3>
+                <a href="#"><img src="/Content/social-chef/images/advertisment.jpg" alt="" /></a>
+            </div>
+        </aside>
+        <!--//right sidebar-->
+    </div>
+    <!--//row-->
+</div>
+

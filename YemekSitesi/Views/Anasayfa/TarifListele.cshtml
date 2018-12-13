@@ -1,0 +1,77 @@
+﻿@model List<Yemek>
+@{
+    ViewBag.Title = "TarifListele";
+    Layout = "~/Views/Shared/_LayoutKullanici.cshtml";
+}
+
+<main class="main" role="main">
+    <!--wrap-->
+    <div class="wrap clearfix">
+        <!--breadcrumbs-->
+        <nav class="breadcrumbs">
+            <ul>
+                <li><a href="index-2.html" title="Home">Home</a></li>
+                <li>Recipes</li>
+            </ul>
+        </nav>
+        <!--//breadcrumbs-->
+        <!--row-->
+        <div class="row">
+            <header class="s-title">
+                <h1>Recipes</h1>
+            </header>
+
+            <!--content-->
+            <section class="content three-fourth">
+                <!--entries-->
+                <div class="entries row">
+                    @foreach (var yemek in @Model)
+                    {
+                        <div class="entry one-third">
+                            <figure>
+                                <img src="/Content/Resimler/Yemekler/@yemek.resim" alt="@yemek.ad" />
+                                <figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>Gözat</span></a></figcaption>
+                            </figure>
+                            <div class="container">
+                                <h2><a href="recipe.html">Thai fried rice with fruit and vegetables</a></h2>
+                                <div class="actions">
+                                    <div>
+                                        <div class="difficulty"><i class="ico i-medium"></i><a href="#">medium</a></div>
+                                        <div class="likes"><i class="fa fa-heart"></i><a href="#">10</a></div>
+                                        <div class="comments"><i class="fa fa-comment"></i><a href="recipe.html#comments">@yemek.Yorum.Count</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                    <div class="quicklinks">
+                        <a href="#" class="button">Daha Fazla Tarif</a>
+                        <a href="javascript:void(0)" class="button scroll-to-top">Yukari Çık</a>
+                    </div>
+                </div>
+                <!--//entries-->
+            </section>
+            <!--//content-->
+            <!--right sidebar-->
+            <aside class="sidebar one-fourth">
+                <div class="widget">
+                    <ul class="categories right">
+                        @Html.Action("resimsizKategoriler", "Anasayfa")
+                    </ul>
+                </div>
+                <div class="widget">
+                    <h3>Advertisment</h3>
+                    <a href="#"><img src="/Content/social-chef/images/advertisment.jpg" alt="" /></a>
+                </div>
+            </aside>
+            <!--//right sidebar-->
+        </div>
+        <!--//row-->
+    </div>
+    <!--//wrap-->
+</main>
+@section homeAlt{
+    
+    }

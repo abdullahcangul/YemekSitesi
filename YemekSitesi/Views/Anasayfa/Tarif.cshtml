@@ -1,0 +1,235 @@
+﻿@model Yemek
+@{
+    ViewBag.Title = "Tarif";
+    Layout = "~/Views/Shared/_LayoutKullanici.cshtml";
+}
+
+<main class="main" role="main">
+    <!--wrap-->
+    <div class="wrap clearfix">
+        <!--breadcrumbs-->
+        <nav class="breadcrumbs">
+            <ul>
+                <li><a href="index-2.html" title="Home">Home</a></li>
+                <li><a href="#" title="Recipes">Recipes</a></li>
+                <li><a href="recipes.html" title="Cocktails">Deserts</a></li>
+                <li>Recipe</li>
+            </ul>
+        </nav>
+        <!--//breadcrumbs-->
+        <!--row-->
+        <div class="row">
+            <header class="s-title">
+                <h1>@Model.ad</h1>
+            </header>
+            <!--content-->
+            <section class="content three-fourth">
+                <!--recipe-->
+                <div class="recipe">
+                    <div class="row">
+                        <!--two-third-->
+                        <article class="two-third">
+                            <div class="image"><a href="#"><img width="600px;" src="/Content/Resimler/Yemekler/@Model.resim" alt="@Model.resim" /></a></div>
+                            <div class="intro"><p><strong>@Model.aciklama</strong></p> </div>
+                            <div class="instructions">
+                                <ol>
+                                    @foreach (var tarif in Model.Tarif)
+                                    {
+
+                                        <li>@tarif.aciklama</li>
+                                    }
+
+                                </ol>
+                            </div>
+                        </article>
+                        <!--//two-third-->
+                        <!--one-third-->
+                        <article class="one-third">
+                            <dl class="basic">
+                                <dt>Pisirme Süresi</dt>
+                                <dd>@Model.pisirmeSuresi</dd>
+                                <dt>Zorluk</dt>
+                                <dd>@Model.ZorlukDerecesi.zorlukTanımı</dd>
+                                <dt>Kaç kisilik</dt>
+                                <dd>@Model.kacKisilik</dd>
+                            </dl>
+
+                            <dl class="user">
+                                <dt>Kategorisi</dt>
+                                <dd>@Model.Kategori.kategoriAdi</dd>
+                                <dt>Yayınlayan</dt>
+                                <dd>@Model.Kullanici.ad @Model.Kullanici.soyad</dd>
+                            </dl>
+
+                            <dl class="ingredients">
+                                @foreach (var mazeme in @Model.Mazeme)
+                                {
+                                    <dt>@mazeme.miktar @mazeme.birim</dt>
+                                    <dd>@mazeme.mazemeAdi</dd>
+                                }
+
+
+                            </dl>
+                        </article>
+                        <!--//one-third-->
+                    </div>
+                </div>
+                <!--//recipe-->
+                <!--comments-->
+                <div class="comments" id="comments">
+                    <h2>5 comments </h2>
+                    <ol class="comment-list">
+                        <!--comment-->
+                        <li class="comment depth-1">
+                            <div class="avatar"><a href="my_profile.html"><img src="images/avatar1.jpg" alt="" /></a></div>
+                            <div class="comment-box">
+                                <div class="comment-author meta">
+                                    <strong>Kimberly C.</strong> said 1 month ago <a href="#" class="comment-reply-link"> Reply</a>
+                                </div>
+                                <div class="comment-text">
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <!--//comment-->
+                        <!--comment-->
+                        <li class="comment depth-1">
+                            <div class="avatar"><a href="my_profile.html"><img src="images/avatar2.jpg" alt="" /></a></div>
+                            <div class="comment-box">
+                                <div class="comment-author meta">
+                                    <strong>Alex J.</strong> said 1 month ago <a href="#" class="comment-reply-link"> Reply</a>
+                                </div>
+                                <div class="comment-text">
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <!--//comment-->
+                        <!--comment-->
+                        <li class="comment depth-2">
+                            <div class="avatar"><a href="my_profile.html"><img src="images/avatar1.jpg" alt="" /></a></div>
+                            <div class="comment-box">
+                                <div class="comment-author meta">
+                                    <strong>Kimberly C.</strong> said 1 month ago <a href="#" class="comment-reply-link"> Reply</a>
+                                </div>
+                                <div class="comment-text">
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <!--//comment-->
+                        <!--comment-->
+                        <li class="comment depth-3">
+                            <div class="avatar"><a href="my_profile.html"><img src="images/avatar2.jpg" alt="" /></a></div>
+                            <div class="comment-box">
+                                <div class="comment-author meta">
+                                    <strong>Alex J.</strong> said 1 month ago <a href="#" class="comment-reply-link"> Reply</a>
+                                </div>
+                                <div class="comment-text">
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <!--//comment-->
+                        <!--comment-->
+                        <li class="comment depth-1">
+                            <div class="avatar"><a href="my_profile.html"><img src="images/avatar3.jpg" alt="" /></a></div>
+                            <div class="comment-box">
+                                <div class="comment-author meta">
+                                    <strong>Denise M.</strong> said 1 month ago <a href="#" class="comment-reply-link"> Reply</a>
+                                </div>
+                                <div class="comment-text">
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <!--//comment-->
+                    </ol>
+                </div>
+                <!--//comments-->
+                <!--respond-->
+                <div class="comment-respond" id="respond">
+                    <h2>Leave a reply</h2>
+                    <div class="container">
+                        <p><strong>Note:</strong> Comments on the web site reflect the views of their authors, and not necessarily the views of the socialchef internet portal. Requested to refrain from insults, swearing and vulgar expression. We reserve the right to delete any comment without notice explanations.</p>
+                        <p>Your email address will not be published. Required fields are signed with <span class="req">*</span></p>
+                        <form>
+                            <div class="f-row">
+                                <div class="third">
+                                    <input type="text" placeholder="Your name" />
+                                    <span class="req">*</span>
+                                </div>
+
+                                <div class="third">
+                                    <input type="email" placeholder="Your email" />
+                                    <span class="req">*</span>
+                                </div>
+
+                                <div class="third">
+                                    <input type="text" placeholder="Your website" />
+                                </div>
+
+                            </div>
+                            <div class="f-row">
+                                <textarea></textarea>
+                            </div>
+
+                            <div class="f-row">
+                                <div class="third bwrap">
+                                    <input type="submit" value="Submit comment" />
+                                </div>
+                            </div>
+
+                            <div class="bottom">
+                                <div class="f-row checkbox">
+                                    <input type="checkbox" id="ch1" />
+                                    <label for="ch1">Notify me of replies to my comment via e-mail</label>
+                                </div>
+                                <div class="f-row checkbox">
+                                    <input type="checkbox" id="ch2" />
+                                    <label for="ch2">Notify me of new articles by email.</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!--//respond-->
+            </section>
+            <!--//content-->
+            <!--right sidebar-->
+            <aside class="sidebar one-fourth">
+                <div class="widget nutrition">
+                    <h3>Nutrition facts <span>(per serving)</span></h3>
+                    <table>
+                        @foreach (var bd in Model.BesinDegerleri)
+                        {
+                            <tr>
+                                <td>@bd.besinAdi </td>
+                                <td>@bd.deger</td>
+                            </tr>
+                        }
+
+
+                    </table>
+                </div>
+
+                <div class="widget share">
+                    <ul class="boxed">
+                        <li class="light"><a href="#" title="Facebook"><i class="fa fa-facebook"></i> <span>Share on Facebook</span></a></li>
+                        <li class="medium"><a href="#" title="Twitter"><i class="fa fa-twitter"></i> <span>Share on Twitter</span></a></li>
+                        <li class="dark"><a href="#" title="Favourites"><i class="fa fa-heart"></i> <span>Add to Favourites</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="widget members">
+                    
+                    @Html.Action("KullaniciLar", "Anasayfa")
+                </div>
+            </aside>
+            <!--//right sidebar-->
+        </div>
+        <!--//row-->
+    </div>
+    <!--//wrap-->
+</main>
+

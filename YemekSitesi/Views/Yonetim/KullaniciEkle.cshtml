@@ -1,0 +1,78 @@
+﻿@model Kullanici
+@{
+    ViewBag.Title = "KullaniciEkle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="col-lg-12">
+    <section class="panel">
+        <header class="panel-heading">
+            <h2>Kullanici Ekle</h2>
+
+        </header>
+        <div class="panel-body">
+            @using (Html.BeginForm("KullaniciEkle", "Yonetim", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+                if (ViewData["Hata"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fa fa-ban"></i> Dikkat!</h5>
+                        @ViewData["Hata"]
+                    </div>
+                }
+
+                @Html.ValidationSummary()
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.ad)
+                    @Html.TextBoxFor(x => x.ad, new { @class = "form-control", placeholder = " Adı giriniz" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.soyad)
+                    @Html.TextBoxFor(x => x.soyad, new { @class = "form-control", @placeholder = "Soyad giriniz" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.eposta)
+                    @Html.TextBoxFor(x => x.eposta, new { @class = "form-control", @placeholder = "Eposta giriniz" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.meslegi)
+                    @Html.TextBoxFor(x => x.meslegi, new { @class = "form-control", @placeholder = "Meslegini giriniz" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.ulkesi)
+                    @Html.TextBoxFor(x => x.ulkesi, new { @class = "form-control", @placeholder = "Ulkesini giriniz" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.dogumTarihi)
+                    @Html.TextBoxFor(x => x.dogumTarihi, new { @class = "form-control", @placeholder = "Dogum Tarihi giriniz" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.sifre)
+                    @Html.PasswordFor(x => x.sifre, new { @class = "form-control", @placeholder = "Sifre girin" })
+                </div>
+                <div class="form-group">
+                    <label>Resim</label>
+                    <input type="file" name="resimGelen" class="form-control" placeholder="Resim giriniz.">
+                </div>
+
+
+
+                <button type="submit" class="btn btn-info pull-right ">Ekle</button>
+
+            }
+
+        </div>
+    </section>
+</div>
+
+
+
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet" />
+}

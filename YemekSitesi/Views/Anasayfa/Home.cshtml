@@ -1,0 +1,313 @@
+﻿@model List<Yemek>
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_LayoutKullanici.cshtml";
+}
+
+
+<main class="main" role="main">
+    <!--intro-->
+    <div class="intro">
+        <figure class="bg"><img src="/Content/social-chef/images/intro.jpg" alt="" /></figure>
+
+        <!--wrap-->
+        <div class="wrap clearfix">
+            <!--row-->
+            <div class="row">
+                <article class="three-fourth text">
+                    <h1>Welcome to SocialChef!</h1>
+                    <p>SocialChef is the ultimate <strong>cooking social community</strong>, where recipes come to life. Wanna know what you will gain by joining us? Lorem ipsum dolor sit amet, this is some teaser text.</p>
+                    <p>You will win awesome prizes, make new friends and share delicious recipes. </p>
+                    <a href="register.html" class="button white more medium">Join our community <i class="fa fa-chevron-right"></i></a>
+                    <p>Already a member? Click <a href="login.html">here</a> to login.</p>
+                </article>
+
+                <!--search recipes widget-->
+                <div class="one-fourth">
+                    <div class="widget container">
+                        <div class="textwrap">
+                            <h3>Search for recipes</h3>
+                            <p>All you need to do is enter an igredient, a dish or a keyword. </p>
+                            <p>You can also select a specific category from the dropdown.</p>
+                            <p>There’s sure to be something tempting for you to try.</p>
+                            <p>Enjoy!</p>
+                        </div>
+                        <form action="http://www.themeenergy.com/themes/html/social-chef/find_recipe.html">
+                            <div class="f-row">
+                                <input type="text" placeholder="Enter your search term" />
+                            </div>
+                            <div class="f-row">
+                                <select>
+                                    <option>or select a category</option>
+                                    <option>Apetizers</option>
+                                    <option>Cocktails</option>
+                                    <option>Deserts</option>
+                                    <option>Main courses</option>
+                                    <option>Snacks</option>
+                                    <option>Soups</option>
+                                </select>
+                            </div>
+                            <div class="f-row bwrap">
+                                <input type="submit" value="Start cooking!" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!--//search recipes widget-->
+            </div>
+            <!--//row-->
+        </div>
+        <!--//wrap-->
+    </div>
+    <!--//intro-->
+    <!--wrap-->
+    <div class="wrap clearfix">
+        <!--row-->
+        <div class="row">
+            <!--content-->
+            <section class="content full-width">
+                <div class="icons dynamic-numbers">
+                    <header class="s-title">
+                        <h2 class="ribbon large">SocialChef in numbers</h2>
+                    </header>
+
+                    <!--row-->
+                    <div class="row">
+                        <!--item-->
+                        <div class="one-sixth">
+                            <div class="container">
+                                <i class="icon icon-themeenergy_chef-hat"></i>
+                                <span class="title dynamic-number" data-dnumber="1730">0</span>
+                                <span class="subtitle">members</span>
+                            </div>
+                        </div>
+                        <!--//item-->
+                        <!--item-->
+                        <div class="one-sixth">
+                            <div class="container">
+                                <i class="icon icon-themeenergy_pan"></i>
+                                <span class="title dynamic-number" data-dnumber="1250">0</span>
+                                <span class="subtitle">recipes</span>
+                            </div>
+                        </div>
+                        <!--//item-->
+                        <!--item-->
+                        <div class="one-sixth">
+                            <div class="container">
+                                <i class="icon icon-themeenergy_image"></i>
+                                <span class="title dynamic-number" data-dnumber="5300">0</span>
+                                <span class="subtitle">photos</span>
+                            </div>
+                        </div>
+                        <!--//item-->
+                        <!--item-->
+                        <div class="one-sixth">
+                            <div class="container">
+                                <i class="icon icon-themeenergy_pencil"></i>
+                                <span class="title dynamic-number" data-dnumber="2300">0</span>
+                                <span class="subtitle">forum posts</span>
+                            </div>
+                        </div>
+                        <!--//item-->
+                        <!--item-->
+                        <div class="one-sixth">
+                            <div class="container">
+                                <i class="icon icon-themeenergy_chat-bubbles"></i>
+                                <span class="title dynamic-number" data-dnumber="7400">0</span>
+                                <span class="subtitle">comments</span>
+                            </div>
+                        </div>
+                        <!--//item-->
+                        <!--item-->
+                        <div class="one-sixth">
+                            <div class="container">
+                                <i class="icon icon-themeenergy_stars"></i>
+                                <span class="title dynamic-number" data-dnumber="1700">0</span>
+                                <span class="subtitle">articles</span>
+                            </div>
+                        </div>
+                        <!--//item-->
+
+                        <div class="cta">
+                            <a href="login.html" class="button big">Join us!</a>
+                        </div>
+                    </div>
+                    <!--//row-->
+                </div>
+            </section>
+            <!--//content-->
+            <!--content-->
+            <section class="content three-fourth">
+                <!--cwrap-->
+                <div class="cwrap">
+                    <!--entries-->
+                    <div class="entries row">
+                        <!--featured recipe-->
+                        <div class="featured two-third">
+                            <header class="s-title">
+                                <h2 class="ribbon">Günün Tarifi</h2>
+                            </header>
+                            <article class="entry">
+                                <figure>
+                                    <img width="600px;" src="/Content/Resimler/Yemekler/@Model[0].resim" alt="" />
+                                    <figcaption><a href="AnaSayfa/YemekDetay/@Model[0].yemekID"><i class="icon icon-themeenergy_eye2"></i> <span>Görüntüle</span></a></figcaption>
+                                </figure>
+                                <div class="container">
+                                    <h2><a href="/Content/social-chef/recipe.html">@Model[0].ad</a></h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p>
+                                    <div class="actions">
+                                        <div>
+                                            <a href="#" class="button">Daha Fazlası</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <!--//featured recipe-->
+                        <!--featured member-->
+                        <div class="featured one-third">
+                            <header class="s-title">
+                                <h2 class="ribbon star">Featured member</h2>
+                            </header>
+                            <article class="entry">
+                                <figure>
+                                    <img  src="~/Content/Resimler/Kullanicilar/@Model[0].Kullanici.resim" alt="@Model[0].Kullanici.ad" />
+                                    <figcaption><a href="my_profile.html"><i class="icon icon-themeenergy_eye2"></i> <span>View member</span></a></figcaption>
+                                </figure>
+                                <div class="container">
+                                    <h2><a href="my_profile.html">@Model[0].Kullanici.ad @Model[0].Kullanici.soyad</a></h2>
+                                    <blockquote><i class="fa fa-quote-left"></i>Traditional dishes and fine bakery products accompanied by beautiful photographs to bend around and attract the tryout! Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</blockquote>
+                                    <div class="actions">
+                                        <div>
+                                            <a href="#" class="button">Tariflerini Kontrol Et</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <!--//featured member-->
+                    </div>
+                    <!--//entries-->
+                </div>
+                <!--//cwrap-->
+                <!--cwrap-->
+                <div class="cwrap">
+                    <header class="s-title">
+                        <h2 class="ribbon bright">Son Tarifler</h2>
+                    </header>
+                    <div class="entries row">
+                        <!--entries-->
+                        @foreach (var yemek in @Model)
+                        {
+
+
+                            <!--item-->
+                            <div class="entry one-third">
+                                <figure>
+                                    <img src="/Content/Resimler/Yemekler/@yemek.resim" alt="" />
+                                    <figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>Gözat</span></a></figcaption>
+                                </figure>
+                                <div class="container">
+                                    <h2><a href="recipe.html">Thai fried rice with fruit and vegetables</a></h2>
+                                    <div class="actions">
+                                        <div>
+                                            <div class="difficulty"><i class="ico i-medium"></i><a href="#">@yemek.ZorlukDerecesi.zorlukTanımı</a></div>
+                                            <div class="likes"><i class="fa fa-heart"></i><a href="#">@yemek.Yorum.Count()</a></div>
+                                            <div class="comments"><i class="fa fa-comment"></i><a href="recipe.html#comments">27</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--item-->
+
+
+
+                        }
+                        <div class="quicklinks">
+                            <a href="#" class="button">More recipes</a>
+                            <a href="javascript:void(0)" class="button scroll-to-top">Back to top</a>
+                        </div>
+                    </div>
+                        <!--//entries-->
+                    </div>
+                <!--//cwrap-->
+                <!--cwrap-->
+                <div class="cwrap">
+                    <header class="s-title">
+                        <h2 class="ribbon bright">Bloglar</h2>
+                    </header>
+                    <!--entries-->
+                    <div class="entries row">
+                        @foreach (Blog blog in ViewBag.Blog)
+                        {
+                            <div class="entry one-third">
+                                <figure>
+                                    <img src="~/Content/Resimler/Bloglar/@blog.resim" alt="" />
+                                    <figcaption><a href="blog_single.html"><i class="icon icon-themeenergy_eye2"></i> <span>Gözat</span></a></figcaption>
+                                </figure>
+                                <div class="container">
+                                    <h2><a href="blog_single.html">@blog.baslik</a></h2>
+                                    <div class="actions">
+                                        <div>
+                                            <div class="date"><i class="fa fa-calendar"></i><a href="#">@blog.tarih</a></div>
+                                            <div class="comments"><i class="fa fa-comment"></i><a href="blog_single.html#comments">27</a></div>
+                                        </div>
+                                    </div>
+                                    <div class="excerpt">
+                                        @if (blog.icerik.Length > 20)
+                                        {
+                                            <p>@blog.icerik.Substring(0, 30)... </p>
+                                        }
+                                        else
+                                        {
+                                            <p>@blog.icerik </p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <!--item-->
+                        <!--item-->
+                        <!--item-->
+                        <!--item-->
+
+                        <div class="quicklinks">
+                            <a href="#" class="button">More posts</a>
+                            <a href="javascript:void(0)" class="button scroll-to-top">Back to top</a>
+                        </div>
+                    </div>
+                    <!--//entries-->
+                </div>
+                <!--//cwrap-->
+            </section>
+            <!--//content-->
+            <!--right sidebar-->
+            <aside class="sidebar one-fourth">
+                <div class="widget">
+                    <h3>Kategoriler</h3>
+                    @Html.Action("Kategoriler","Anasayfa")
+                </div>
+                <div class="widget members">
+                    @Html.Action("KullaniciLar", "Anasayfa")
+                </div>
+
+                <div class="widget">
+                    <h3>Advertisment</h3>
+                    <a href="#"><img src="/Content/social-chef/images/advertisment.jpg" alt="" /></a>
+                </div>
+            </aside>
+        </div>
+        <!--//right sidebar-->
+    </div>
+    <!--//wrap-->
+</main>
+@section homeAlt{
+
+    <section class="cta">
+        <div class="wrap clearfix">
+            <a href="http://themeforest.net/item/socialchef-social-recipe-html-template/8568727?ref=themeenergy" class="button big white right">Purchase theme</a>
+            <h2>Already convinced? This is a call to action section lorem ipsum dolor sit amet.</h2>
+        </div>
+    </section>
+}

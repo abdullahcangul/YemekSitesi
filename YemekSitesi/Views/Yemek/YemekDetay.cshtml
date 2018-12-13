@@ -1,0 +1,154 @@
+﻿@model YemekSitesi.Models.Yemek
+@{
+    ViewBag.Title = "YemekDetay";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <!--widget start-->
+        <aside class="profile-nav alt green-border">
+            <section class="panel">
+                <div class="user-heading alt green-bg">
+                    <a href="#">
+                        <img alt="" src="/Content/Resimler/Yemekler/@Model.resim">
+                    </a>
+                    <h1>@Model.ad</h1>
+                    <p>@Model.Kullanici.ad @Model.Kullanici.soyad</p>
+                </div>
+
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="javascript:;"> <i class="icon-time"></i> Yorum sayısı <span class="label label-primary pull-right r-activity">@Model.Yorum.Count</span></a></li>
+                    <li><a href="javascript:;"> <i class="icon-calendar"></i> Kaç Kişilik <span class="label label-info pull-right r-activity">@Model.kacKisilik</span></a></li>
+                    <li><a href="javascript:;"> <i class="icon-bell-alt"></i>Kategori  <span class="label label-warning pull-right r-activity">@Model.Kategori.kategoriAdi</span></a></li>
+                    <li><a href="javascript:;"> <i class="icon-envelope-alt"></i> Zorluk dercesi <span class="label label-success pull-right r-activity">@Model.ZorlukDerecesi.zorlukTanımı</span></a></li>
+                </ul>
+
+            </section>
+        </aside>
+
+    </div>
+</div>
+<div class="row">
+   
+        <div class="col-lg-4">
+            <section class="panel">
+                <header class="panel-heading">
+                    Tarifler Listesi
+                    <a href="/Yemek/TarifEkle/@Model.yemekID" class="btn btn-info btn-sm pull-right ">
+                        <i class="fa fa-plus"></i> Tarif Ekle
+                    </a>
+                </header>
+                <table class="table table-striped table-advance table-hover">
+
+                    <thead>
+                        <tr>
+                            <th><i class="icon-bullhorn"></i> Sıra No</th>
+                            <th class="hidden-phone"><i class="icon-question-sign"></i> Aciklama</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Tarif.Count > 0)
+                        {
+                            foreach (var tarif in Model.Tarif)
+                            {
+                                <tr>
+                                    <td><a href="#">@tarif.siraNo</a></td>
+                                    <td class="hidden-phone">@tarif.aciklama</td>
+                                    <td>
+                                        <a href="/Yemek/TarifDuzenle/@tarif.tarifID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i></a>
+                                        <a href="/Yemek/TarifSil/@tarif.tarifID" onclick="return confirm('Silmek istediğinizden emin misiniz ?')" class="btn btn-danger btn-xs"><i class="icon-trash "></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        </tbody>
+                        
+                </table>
+            </section>
+        </div>
+
+   
+  
+        <div class="col-lg-4">
+            <section class="panel">
+                <header class="panel-heading">
+                    Mazeme Listesi
+                    <a href="/Yemek/MazemeEkle/@Model.yemekID" class="btn btn-info btn-sm pull-right ">
+                        <i class="fa fa-plus"></i> Mazeme Ekle
+                    </a>
+                </header>
+                <table class="table table-striped table-advance table-hover">
+
+                    <thead>
+                        <tr>
+                            <th><i class="icon-bullhorn"></i> Mazeme Adı</th>
+                            <th class="hidden-phone"><i class="icon-question-sign"></i> Miktarı</th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Mazeme.Count > 0)
+                        {
+                            foreach (var mazeme in Model.Mazeme)
+                            {
+                                <tr>
+                                    <td><a href="#">@mazeme.mazemeAdi</a></td>
+                                    <td class="hidden-phone">@mazeme.miktar @mazeme.birim </td>
+                                    <td>
+                                        <a href="/Yemek/MazemeDuzenle/@mazeme.mazemeID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i></a>
+                                        <a href="/Yemek/MazemeSil/@mazeme.mazemeID" onclick="return confirm('Silmek istediğinizden emin misiniz ?')" class="btn btn-danger btn-xs"><i class="icon-trash "></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        </tbody>
+                </table>
+            </section>
+        </div>
+    
+   
+        <div class="col-lg-4">
+            <section class="panel">
+                <header class="panel-heading">
+                    Besin Deger Tablosu
+                    <a href="/Yemek/BesinDegerleriEkle/@Model.yemekID" class="btn btn-info btn-sm pull-right ">
+                        <i class="fa fa-plus"></i> Besin Degeri Ekle
+                    </a>
+                </header>
+                <table class="table table-striped table-advance table-hover">
+
+                    <thead>
+                        <tr>
+                            <th><i class="icon-bullhorn"></i> Besin Adi</th>
+                            <th class="hidden-phone"><i class="icon-question-sign"></i> Deger</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.BesinDegerleri.Count > 0)
+                        {
+                            foreach (var besinDegerleri in Model.BesinDegerleri)
+                            {
+                                <tr>
+                                    <td><a href="#">@besinDegerleri.besinAdi</a></td>
+                                    <td class="hidden-phone">@besinDegerleri.deger </td>
+                                    <td>
+                                        <a href="/Yemek/BesinDegerleriDuzenle/@besinDegerleri.besinDegerID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i></a>
+                                        <a href="/Yemek/BesinDegerleriSil/@besinDegerleri.besinDegerID" onclick="return confirm('Silmek istediğinizden emin misiniz ?')" class="btn btn-danger btn-xs"><i class="icon-trash "></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        </tbody>
+                </table>
+            </section>
+        </div>
+    
+
+</div>
+
+

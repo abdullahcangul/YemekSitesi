@@ -1,0 +1,86 @@
+﻿@model Kullanici
+@{
+    ViewBag.Title = "KullaniciDetay";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="panel">
+    <div class="twt-feed blue-bg">
+        <h1>Jonathan Smith</h1>
+        <p>jsmith@flatlab.com</p>
+        <a href="#">
+            <img src="/Content/Admin/img/profile-avatar.jpg" alt="">
+        </a>
+    </div>
+    <div class="weather-category twt-category">
+        <ul>
+            <li class="active">
+                <h5>@Model.Yemek.Count</h5>
+                Yorum
+            </li>
+            <li>
+                <h5>@Model.Blog.Count</h5>
+                Blog 
+            </li>
+            <li>
+                <h5>@Model.Yemek.Count</h5>
+                Tarif 
+            </li>
+        </ul>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+            Adminlik durumu  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+            @if (Model.adminMi == true)
+            {
+                <a class="btn btn-sm btn-danger" href="/Yonetim/AktifEt/@Model.kullaniciID"> Kullanici Et</a>
+            }
+            else
+            {
+                <a class="btn btn-sm btn-danger" href="/Yonetim/AktifEt/@Model.kullaniciID">Admin Et</a>
+            }
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp
+            Kullanici Aktifmi?  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp
+            @if (Model.aktifMi == true)
+            {
+                <a class="btn btn-sm btn-danger" href="/Yonetim/AktifEt2/@Model.kullaniciID">Aktif Et</a>
+            }
+            else
+            {
+                <a class="btn btn-sm btn-danger" href="/Yonetim/AktifEt2/@Model.kullaniciID">Pasif Et</a>
+            }
+        </li>
+    </ul>
+</section>
+
+<section class="panel">
+    <div class="bio-graph-heading">
+        Yemek yapmak. Sanatların en güzeli ve kusursuzudur. Beş duyumuzu birden harekete geçirir, hatta bir duyumuzu daha uyandırır-elimizden geleni ortaya koyma ihtiyacımızı. En sevdiğim tedavi budur.
+    </div>
+    <div class="panel-body bio-graph-info">
+        <h1>Biyografi</h1>
+        <div class="row">
+            <div class="bio-row">
+                <p><span>First Name </span>: @Model.ad</p>
+            </div>
+            <div class="bio-row">
+                <p><span>Last Name </span>: @Model.soyad</p>
+            </div>
+            <div class="bio-row">
+                <p><span>Country </span>: @Model.ulkesi</p>
+            </div>
+            <div class="bio-row">
+                <p><span>Birthday</span>: @Model.dogumTarihi</p>
+            </div>
+            <div class="bio-row">
+                <p><span>Occupation </span>: @Model.meslegi</p>
+            </div>
+            <div class="bio-row">
+                <p><span>Email </span>: @Model.eposta</p>
+            </div>
+        </div>
+    </div>
+</section>

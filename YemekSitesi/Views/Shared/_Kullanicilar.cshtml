@@ -1,0 +1,14 @@
+﻿@model List<Kullanici>
+
+
+    <h3>Kullanicilar</h3>
+    <div id="members-list-options" class="item-options">
+    </div>
+    <ul class="boxed">
+        @foreach (var kul in @Model)
+        {
+            <li><div class="avatar"><img src="~/Content/Resimler/Kullanicilar/@kul.resim" alt="@kul.ad"><span>@kul.ad</span></div></li>
+        }
+
+
+    </ul>

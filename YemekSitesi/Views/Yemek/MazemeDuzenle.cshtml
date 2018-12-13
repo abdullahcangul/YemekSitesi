@@ -1,0 +1,60 @@
+﻿@model Mazeme
+@{
+    ViewBag.Title = "MazemeDuzenle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="col-lg-12">
+    <section class="panel">
+        <header class="panel-heading">
+            <h2>Mazeme Duzenle</h2>
+
+        </header>
+        <div class="panel-body">
+            @using (Html.BeginForm())
+            {
+
+                if (ViewData["Hata"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fa fa-ban"></i> Dikkat!</h5>
+                        @ViewData["Hata"]
+                    </div>
+                }
+
+                @Html.ValidationSummary()
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+
+                            @Html.LabelFor(x => x.mazemeAdi)
+                            @Html.TextBoxFor(x => x.mazemeAdi, new { @class = "form-control", placeholder = "Mazeme adını giriniz", @value = "" })
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+
+                            @Html.LabelFor(x => x.miktar)
+                            @Html.TextBoxFor(x => x.miktar, new { @class = "form-control", placeholder = "Miktar  giriniz", @value = "" })
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+
+                            @Html.LabelFor(x => x.birim)
+                            @Html.TextBoxFor(x => x.birim, new { @class = "form-control", @placeholder = "birim Giriniz" })
+                        </div>
+                    </div>
+                </div>
+
+
+                <button type="submit" class="btn btn-info pull-right ">Duzenle</button>
+
+            }
+            <a class="btn btn-info" href="/Yemek/YemekDetay/@Model.yemekID">Detay Sayfasına Dön</a>
+
+        </div>
+    </section>
+</div>
