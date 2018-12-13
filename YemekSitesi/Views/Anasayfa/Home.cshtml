@@ -2,6 +2,9 @@
 @{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_LayoutKullanici.cshtml";
+    YemekSitesi.HomeModel hm = (HomeModel)ViewBag.sayi;
+    Random rastgele = new Random();
+    int sayi = rastgele.Next(5);
 }
 
 
@@ -18,8 +21,8 @@
                     <h1>Welcome to SocialChef!</h1>
                     <p>SocialChef is the ultimate <strong>cooking social community</strong>, where recipes come to life. Wanna know what you will gain by joining us? Lorem ipsum dolor sit amet, this is some teaser text.</p>
                     <p>You will win awesome prizes, make new friends and share delicious recipes. </p>
-                    <a href="register.html" class="button white more medium">Join our community <i class="fa fa-chevron-right"></i></a>
-                    <p>Already a member? Click <a href="login.html">here</a> to login.</p>
+                    <a href="/AnaSayfa/KayıtOl" class="button white more medium">Katıl bize<i class="fa fa-chevron-right"></i></a>
+                    <p>Zaten Kayıtlı misin? <a href="/Anasayfa/Giris">tıkla</a> Giris yapmak için</p>
                 </article>
 
                 <!--search recipes widget-->
@@ -74,62 +77,45 @@
                     <!--row-->
                     <div class="row">
                         <!--item-->
-                        <div class="one-sixth">
+                        <div class="one-fourth">
                             <div class="container">
                                 <i class="icon icon-themeenergy_chef-hat"></i>
-                                <span class="title dynamic-number" data-dnumber="1730">0</span>
-                                <span class="subtitle">members</span>
+                                <span class="title dynamic-number" data-dnumber="@hm.yemekSayisi">0</span>
+                                <span class="subtitle">Tarif</span>
                             </div>
                         </div>
                         <!--//item-->
                         <!--item-->
-                        <div class="one-sixth">
+                        <div class="one-fourth">
                             <div class="container">
                                 <i class="icon icon-themeenergy_pan"></i>
-                                <span class="title dynamic-number" data-dnumber="1250">0</span>
-                                <span class="subtitle">recipes</span>
+                                <span class="title dynamic-number" data-dnumber="@hm.blogSayisi">0</span>
+                                <span class="subtitle">Blog</span>
                             </div>
                         </div>
                         <!--//item-->
                         <!--item-->
-                        <div class="one-sixth">
+                        <div class="one-fourth">
                             <div class="container">
                                 <i class="icon icon-themeenergy_image"></i>
-                                <span class="title dynamic-number" data-dnumber="5300">0</span>
-                                <span class="subtitle">photos</span>
+                                <span class="title dynamic-number" data-dnumber="@hm.kullaniciSayisi">0</span>
+                                <span class="subtitle">Kullanici</span>
                             </div>
                         </div>
                         <!--//item-->
                         <!--item-->
-                        <div class="one-sixth">
+                        <div class="one-fourth">
                             <div class="container">
                                 <i class="icon icon-themeenergy_pencil"></i>
-                                <span class="title dynamic-number" data-dnumber="2300">0</span>
-                                <span class="subtitle">forum posts</span>
-                            </div>
-                        </div>
-                        <!--//item-->
-                        <!--item-->
-                        <div class="one-sixth">
-                            <div class="container">
-                                <i class="icon icon-themeenergy_chat-bubbles"></i>
-                                <span class="title dynamic-number" data-dnumber="7400">0</span>
-                                <span class="subtitle">comments</span>
-                            </div>
-                        </div>
-                        <!--//item-->
-                        <!--item-->
-                        <div class="one-sixth">
-                            <div class="container">
-                                <i class="icon icon-themeenergy_stars"></i>
-                                <span class="title dynamic-number" data-dnumber="1700">0</span>
-                                <span class="subtitle">articles</span>
+                                <span class="title dynamic-number" data-dnumber="@hm.yorumSayisi">0</span>
+                                <span class="subtitle">Yorum</span>
                             </div>
                         </div>
                         <!--//item-->
 
+
                         <div class="cta">
-                            <a href="login.html" class="button big">Join us!</a>
+                            <a href="/Anasayfa/KayıtOl" class="button big">Katıl bize</a>
                         </div>
                     </div>
                     <!--//row-->
@@ -149,15 +135,15 @@
                             </header>
                             <article class="entry">
                                 <figure>
-                                    <img width="600px;" src="/Content/Resimler/Yemekler/@Model[0].resim" alt="" />
-                                    <figcaption><a href="AnaSayfa/YemekDetay/@Model[0].yemekID"><i class="icon icon-themeenergy_eye2"></i> <span>Görüntüle</span></a></figcaption>
+                                    <img width="600px;" src="/Content/Resimler/Yemekler/@Model[sayi].resim" alt="" />
+                                    <figcaption><a href="AnaSayfa/YemekDetay/@Model[sayi].yemekID"><i class="icon icon-themeenergy_eye2"></i> <span>Görüntüle</span></a></figcaption>
                                 </figure>
                                 <div class="container">
-                                    <h2><a href="/Content/social-chef/recipe.html">@Model[0].ad</a></h2>
+                                    <h2><a href="/Content/social-chef/recipe.html">@Model[sayi].ad</a></h2>
                                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p>
                                     <div class="actions">
                                         <div>
-                                            <a href="#" class="button">Daha Fazlası</a>
+                                            <a href="/AnaSayfa/TarifListele" class="button">Daha Fazlası</a>
                                         </div>
                                     </div>
                                 </div>
@@ -171,11 +157,11 @@
                             </header>
                             <article class="entry">
                                 <figure>
-                                    <img  src="~/Content/Resimler/Kullanicilar/@Model[0].Kullanici.resim" alt="@Model[0].Kullanici.ad" />
+                                    <img src="~/Content/Resimler/Kullanicilar/@Model[sayi].Kullanici.resim" alt="@Model[sayi].Kullanici.ad" />
                                     <figcaption><a href="my_profile.html"><i class="icon icon-themeenergy_eye2"></i> <span>View member</span></a></figcaption>
                                 </figure>
                                 <div class="container">
-                                    <h2><a href="my_profile.html">@Model[0].Kullanici.ad @Model[0].Kullanici.soyad</a></h2>
+                                    <h2><a href="my_profile.html">@Model[sayi].Kullanici.ad @Model[sayi].Kullanici.soyad</a></h2>
                                     <blockquote><i class="fa fa-quote-left"></i>Traditional dishes and fine bakery products accompanied by beautiful photographs to bend around and attract the tryout! Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</blockquote>
                                     <div class="actions">
                                         <div>
@@ -205,7 +191,7 @@
                             <div class="entry one-third">
                                 <figure>
                                     <img src="/Content/Resimler/Yemekler/@yemek.resim" alt="" />
-                                    <figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>Gözat</span></a></figcaption>
+                                    <figcaption><a href="/Anasayfa/Tarif/@yemek.yemekID"><i class="icon icon-themeenergy_eye2"></i> <span>Gözat</span></a></figcaption>
                                 </figure>
                                 <div class="container">
                                     <h2><a href="recipe.html">Thai fried rice with fruit and vegetables</a></h2>
@@ -224,13 +210,13 @@
 
 
                         }
-                        <div class="quicklinks">
-                            <a href="#" class="button">More recipes</a>
-                            <a href="javascript:void(0)" class="button scroll-to-top">Back to top</a>
-                        </div>
+                            <div class="quicklinks">
+                                <a href="/Anasayfa/TarifListele" class="button">Daha Fazla Tarif</a>
+                                <a href="javascript:void(0)" class="button scroll-to-top">Yukari çık</a>
+                            </div>
                     </div>
-                        <!--//entries-->
-                    </div>
+                    <!--//entries-->
+                </div>
                 <!--//cwrap-->
                 <!--cwrap-->
                 <div class="cwrap">
@@ -244,14 +230,32 @@
                             <div class="entry one-third">
                                 <figure>
                                     <img src="~/Content/Resimler/Bloglar/@blog.resim" alt="" />
-                                    <figcaption><a href="blog_single.html"><i class="icon icon-themeenergy_eye2"></i> <span>Gözat</span></a></figcaption>
+                                    <figcaption><a href="/Anasayfa/Blog/@blog.blogID"><i class="icon icon-themeenergy_eye2"></i> <span>Gözat</span></a></figcaption>
                                 </figure>
                                 <div class="container">
                                     <h2><a href="blog_single.html">@blog.baslik</a></h2>
                                     <div class="actions">
                                         <div>
                                             <div class="date"><i class="fa fa-calendar"></i><a href="#">@blog.tarih</a></div>
-                                            <div class="comments"><i class="fa fa-comment"></i><a href="blog_single.html#comments">27</a></div>
+
+                                            @if (@blog.Yorum == null)
+                                            {
+                                                <div class="comments">
+                                                    <i class="fa fa-comment"></i><a href="blog_single.html#comments">
+                                                        0
+                                                    </a>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="comments">
+                                                    <i class="fa fa-comment"></i><a href="blog_single.html#comments">
+                                                        @blog.Yorum.ad.Count()
+                                                    </a>
+                                                </div>
+                                            }
+
+
                                         </div>
                                     </div>
                                     <div class="excerpt">
@@ -273,8 +277,8 @@
                         <!--item-->
 
                         <div class="quicklinks">
-                            <a href="#" class="button">More posts</a>
-                            <a href="javascript:void(0)" class="button scroll-to-top">Back to top</a>
+                            <a href="/Anasayfa/Bloglar" class="button">Daha Fazla Blog</a>
+                            <a href="javascript:void(0)" class="button scroll-to-top">Yukari çık</a>
                         </div>
                     </div>
                     <!--//entries-->
@@ -286,7 +290,7 @@
             <aside class="sidebar one-fourth">
                 <div class="widget">
                     <h3>Kategoriler</h3>
-                    @Html.Action("Kategoriler","Anasayfa")
+                    @Html.Action("Kategoriler", "Anasayfa")
                 </div>
                 <div class="widget members">
                     @Html.Action("KullaniciLar", "Anasayfa")

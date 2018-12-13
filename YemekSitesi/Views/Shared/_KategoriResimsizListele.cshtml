@@ -1,9 +1,7 @@
 ﻿@model List<Kategori>
 
 
-            @foreach (var item in @Model)
-            {
-
-                <li><a href="#">@item.kategoriAdi</a></li>
-            }
-   
+@foreach (var item in @Model)
+{
+    <li><a href="/Anasayfa/TarifListele/@item.kategoriID">@item.kategoriAdi</a></li>
+}

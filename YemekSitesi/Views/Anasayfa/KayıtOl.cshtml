@@ -1,0 +1,61 @@
+﻿@model Kullanici
+@{
+    ViewBag.Title = "KayıtOl";
+    Layout = "~/Views/Shared/_LayoutKullanici.cshtml";
+}
+<br /><br /><br /><br /><br /><br />
+<main class="main" role="main">
+    <!--wrap-->
+    <div class="wrap clearfix">
+        <!--row-->
+        <div class="row">
+            @using (Html.BeginForm("KayıtOl", "Anasayfa", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <section class="content center full-width">
+                    <div class="modal container">
+                        <h3>Kayıt Ol</h3>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.ad)
+                            @Html.TextBoxFor(x => x.ad, new { @class = "form-control", placeholder = "Kullanıcı adını giriniz" })
+                        </div>
+                        <div class="f-row">
+                            @Html.LabelFor(x => x.soyad)
+                            @Html.TextBoxFor(x => x.soyad, new { @class = "form-control", placeholder = "Kullanıcı Soyadını giriniz" })
+                        </div>
+                        <div class="f-row">
+                            @Html.LabelFor(x => x.eposta)
+                            @Html.TextBoxFor(x => x.eposta, new { @class = "form-control", placeholder = "Kullanıcı epostasını giriniz" })
+                        </div>
+                        <div class="f-row">
+                            @Html.LabelFor(x => x.dogumTarihi)
+                            @Html.TextBoxFor(x => x.dogumTarihi, new { @class = "form-control", placeholder = "Dogum Tarihini giriniz" })
+                        </div>
+                        <div class="f-row">
+                            @Html.LabelFor(x => x.meslegi)
+                            @Html.TextBoxFor(x => x.meslegi, new { @class = "form-control", placeholder = "Mesleginizi giriniz" })
+                        </div>
+                        <div class="f-row">
+                            @Html.LabelFor(x => x.ulkesi)
+                            @Html.TextBoxFor(x => x.ulkesi, new { @class = "form-control", placeholder = "Ulke adını giriniz" })
+                        </div>
+                        <div class="f-row">
+                            @Html.LabelFor(x => x.sifre)
+                            @Html.PasswordFor(x => x.sifre, new { @class = "form-control", placeholder = "Sifre giriniz" })
+                        </div>
+                        <div class="f-row">
+                            <label>Resim</label>
+                            <input type="file" name="resimGelen" class="form-control" placeholder="Resim giriniz.">
+                        </div>
+
+                        <div class="f-row bwrap">
+                            <input type="submit" value="KayıtOl">
+                        </div>
+                        <p>Hesapbınız var ise  <a href="login.html">Giris Yap</a></p>
+                    </div>
+                </section>
+            }
+        </div>
+        <!--//row-->
+    </div>
+    <!--//wrap-->
+</main>

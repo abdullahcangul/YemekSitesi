@@ -30,7 +30,7 @@
                         <div class="entry one-third">
                             <figure>
                                 <img src="/Content/Resimler/Yemekler/@yemek.resim" alt="@yemek.ad" />
-                                <figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>Gözat</span></a></figcaption>
+                                <figcaption><a href="/Anasayfa/Tarif/@yemek.yemekID"><i class="icon icon-themeenergy_eye2"></i> <span>Gözat</span></a></figcaption>
                             </figure>
                             <div class="container">
                                 <h2><a href="recipe.html">Thai fried rice with fruit and vegetables</a></h2>
@@ -45,11 +45,14 @@
                         </div>
                     }
 
-
-                    <div class="quicklinks">
-                        <a href="#" class="button">Daha Fazla Tarif</a>
-                        <a href="javascript:void(0)" class="button scroll-to-top">Yukari Çık</a>
-                    </div>
+                    @if (ViewBag.denetle != "aabb")
+                    {
+                        <div class="quicklinks">
+                            @if (ViewBag.denetle != "aa")
+                            {<a href="/Anasayfa/TarifListeLe?q=gizle" class="button">Daha Fazla Tarif</a>}
+                            <a href="javascript:void(0)" class="button scroll-to-top">Yukari Çık</a>
+                        </div>
+                    }
                 </div>
                 <!--//entries-->
             </section>
@@ -58,6 +61,7 @@
             <aside class="sidebar one-fourth">
                 <div class="widget">
                     <ul class="categories right">
+                        <li><a href="/Anasayfa/TarifListele">Tum Kategoriler</a></li>
                         @Html.Action("resimsizKategoriler", "Anasayfa")
                     </ul>
                 </div>
@@ -73,5 +77,5 @@
     <!--//wrap-->
 </main>
 @section homeAlt{
-    
-    }
+
+}

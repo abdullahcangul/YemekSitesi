@@ -24,8 +24,8 @@ namespace YemekSitesi.Content
             hm.kullaniciSayisi=k.Count();
             hm.blogSayisi =b.Count();
             hm.yorumSayisi = y.Count() + y.Count();
-            hm.YemekSayisi = ye.Count();
-            hm.kisi=kisi;
+            hm.yemekSayisi = ye.Count();
+            //hm.kisi=kisi;
             ViewBag.kullanici = k;
             return View(hm);
         }
