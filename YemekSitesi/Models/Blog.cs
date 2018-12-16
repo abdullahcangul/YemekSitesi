@@ -9,6 +9,12 @@ namespace YemekSitesi.Models
     [Table("Blog")]
     public partial class Blog
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Blog()
+        {
+            Yorum = new HashSet<Yorum>();
+        }
+
         public int blogID { get; set; }
 
         [StringLength(50)]
@@ -25,14 +31,13 @@ namespace YemekSitesi.Models
 
         public int? kullanıcıID { get; set; }
 
-        public int? yorumID { get; set; }
-
         public int? KategoriID { get; set; }
 
         public virtual Kategori Kategori { get; set; }
 
         public virtual Kullanici Kullanici { get; set; }
 
-        public virtual Yorum Yorum { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Yorum> Yorum { get; set; }
     }
 }

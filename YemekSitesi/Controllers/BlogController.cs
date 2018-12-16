@@ -125,6 +125,7 @@ namespace YemekSitesi.Controllers
             Blog b = db.Blog.Where(x => x.blogID == id).SingleOrDefault();
             ResimIslemleri r = new ResimIslemleri();
             r.Sil(b.resim, "Bloglar");
+            db.Yorum.RemoveRange(db.Yorum.Where(x => x.blogID==id));
             db.Blog.Remove(b);
             db.SaveChanges();
             return RedirectToAction("BlogListele");

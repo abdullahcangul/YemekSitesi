@@ -7,7 +7,7 @@
     <ul class="boxed">
         @foreach (var kul in @Model)
         {
-            <li><div class="avatar"><img src="~/Content/Resimler/Kullanicilar/@kul.resim" alt="@kul.ad"><span>@kul.ad</span></div></li>
+            <li><div class="avatar"><a href="/Anasayfa/KullaniciArama/@kul.kullaniciID"><img src="~/Content/Resimler/Kullanicilar/@kul.resim" alt="@kul.ad"></a><span>@kul.ad</span></div></li>
         }
 
 

@@ -78,38 +78,37 @@
                 <!--comments-->
                 @if (@Model.Yorum != null)
                 {
-                    foreach (var yorum in @Model.Yorum)
+                <div class="comments" id="comments">
+                    <h2>Yorum Sayısı @Model.Yorum.Count </h2>
+                    @foreach (var yorum in Model.Yorum)
                     {
-                        <div class="comments" id="comments">
-                            <h2>5 comments </h2>
+                        if (yorum.onaylimi == true)
+                        {
                             <ol class="comment-list">
                                 <!--comment-->
                                 <li class="comment depth-1">
-                                    <div class="avatar"><a href="my_profile.html"><img src="images/avatar1.jpg" alt="" /></a></div>
+
                                     <div class="comment-box">
                                         <div class="comment-author meta">
-                                            <strong>@yorum.ad</strong> @yorum.tarih 
+                                            <strong>@yorum.ad @yorum.soyad</strong>  <a href="#" class="comment-reply-link"> @yorum.tarih</a>
                                         </div>
                                         <div class="comment-text">
-                                            @if (yorum.icerik.Length<=0)
-                                            {
-                                            <p class="alert-info">yorum yok</p>
-                                            }
-                                            else
-                                            {
-                                            <p >@yorum.icerik</p>
-                                            }
-
+                                            <p>@yorum.icerik</p>
                                         </div>
                                     </div>
                                 </li>
                                 <!--//comment-->
+                                <!--//comment-->
+
                             </ol>
-                        </div>
+
+                        }
                     }
+                </div>
                 }
 
 
+                
                 <!--//comments-->
                 <!--respond-->
                 <div class="comment-respond" id="respond">
@@ -117,7 +116,7 @@
                     <div class="container">
                         <p><strong>Note:</strong> Comments on the web site reflect the views of their authors, and not necessarily the views of the socialchef internet portal. Requested to refrain from insults, swearing and vulgar expression. We reserve the right to delete any comment without notice explanations.</p>
                         <p>Your email address will not be published. Required fields are signed with <span class="req">*</span></p>
-                        <form>
+                      
                             @using (Html.BeginForm())
                             {
                                 <div class="f-row">
@@ -125,20 +124,24 @@
                                         <input type="text" name="ad" placeholder="isminizi  giriniz" />
                                         <span class="req">*</span>
                                     </div>
+                                    <div class="third">
+                                        <input type="text" name="soyad" placeholder="soyadınızı  giriniz" />
+                                        <span class="req">*</span>
+                                    </div>
                                 </div>
-                                <div class="f-row" name="icerik">
-                                    <textarea></textarea>
+                                <div class="f-row" >
+                                    <textarea name="icerik"></textarea>
                                 </div>
 
                                 <div class="f-row">
                                     <div class="third bwrap">
-                                        <input type="submit" name="@Model.yemekID" value="Ekle" />
+                                        <button name="id" val type="submit"  value="@Model.yemekID" >Ekle</button>
                                     </div>
                                 </div>
-                                
+
                             }
 
-                        </form>
+                       
                     </div>
                 </div>
                 <!--//respond-->
@@ -160,6 +163,7 @@
 
                     </table>
                 </div>
+
 
                 <div class="widget share">
                     <ul class="boxed">

@@ -54,6 +54,17 @@ namespace YemekSitesi.Controllers
             Yemek y = db.Yemek.Where(x => x.yemekID == id).SingleOrDefault();
             return View(y);
         }
+        [HttpPost]
+        public ActionResult Tarif(Yorum y,int id)
+        {
+            Yemek ye = db.Yemek.Where(x => x.yemekID == id).SingleOrDefault();
+            y.yemekID = ye.yemekID;
+            y.onaylimi = false;
+            y.tarih = DateTime.Now;
+            db.Yorum.Add(y);
+            db.SaveChanges();
+            return View(ye);
+        }
         public ActionResult Bloglar(int? id, string q)
         {
             List<Blog> b;
@@ -82,6 +93,17 @@ namespace YemekSitesi.Controllers
             Blog blog = db.Blog.Where(x=>x.blogID==id).SingleOrDefault();
             ViewBag.Kategori = db.Kategori.ToList();
             return View(blog);
+        }
+        [HttpPost]
+        public ActionResult Blog(Yorum y, int id)
+        {
+            Blog ye = db.Blog.Where(x => x.blogID == id).SingleOrDefault();
+            y.blogID = ye.blogID;
+            y.onaylimi = false;
+            y.tarih = DateTime.Now;
+            db.Yorum.Add(y);
+            db.SaveChanges();
+            return View(ye);
         }
         public ActionResult Iletisim()
         {
@@ -154,6 +176,12 @@ namespace YemekSitesi.Controllers
         public PartialViewResult Kategoriler()
         {
             return PartialView("_KategoriListesi", @db.Kategori.ToList());
+        }
+        public ActionResult KullaniciArama(int id)
+        {
+            ViewBag.kategoriler = db.Kategori.ToList();
+            List<Yemek> k = db.Yemek.Where(x => x.kullaniciID == id).ToList();
+            return View("Arama", k);
         }
         public PartialViewResult KullaniciLar()
         {

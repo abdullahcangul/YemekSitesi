@@ -152,6 +152,19 @@ namespace YemekSitesi.Controllers
             Yemek ym = db.Yemek.Where(x => x.yemekID == id).SingleOrDefault();
             return View(ym);
         }
+        public ActionResult YemekSil(int id)
+        {
+            Yemek y = db.Yemek.Where(x => x.yemekID == id).SingleOrDefault();
+            ResimIslemleri r = new ResimIslemleri();
+            db.Mazeme.RemoveRange(db.Mazeme.Where(x => x.yemekID == id));
+            db.Tarif.RemoveRange(db.Tarif.Where(x => x.yemekID == id));
+            db.BesinDegerleri.RemoveRange(db.BesinDegerleri.Where(x => x.yemekID == id));
+            db.Yorum.RemoveRange(db.Yorum.Where(x => x.yemekID == id));
+            r.Sil(y.resim, "Yemekler");
+            db.Yemek.Remove(db.Yemek.Where(x => x.yemekID == id).SingleOrDefault());
+            db.SaveChanges();
+            return RedirectToAction("YemekListele");
+        }
 
         //Tarif işlemleri
         public ActionResult TarifEkle(int id)

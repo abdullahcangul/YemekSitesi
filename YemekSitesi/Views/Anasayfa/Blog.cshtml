@@ -45,73 +45,71 @@
                 </article>
                 <!--//blog entry-->
                 <!--comments-->
+                @if (@Model.Yorum != null)
+                {
                 <div class="comments" id="comments">
-                    <h2>5 comments </h2>
-                    <ol class="comment-list">
-                        <!--comment-->
-                        <li class="comment depth-1">
-                            <div class="avatar"><a href="my_profile.html"><img src="images/avatar1.jpg" alt="" /></a></div>
-                            <div class="comment-box">
-                                <div class="comment-author meta">
-                                    <strong>Kimberly C.</strong> said 1 month ago <a href="#" class="comment-reply-link"> Reply</a>
-                                </div>
-                                <div class="comment-text">
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <!--//comment-->
-                       
-                        <!--//comment-->
-                    </ol>
+                    <h2>Yorum Sayısı @Model.Yorum.Count </h2>
+                    @foreach (var yorum in Model.Yorum)
+                    {
+                        if (yorum.onaylimi==true)
+                        {
+                            <ol class="comment-list">
+                                <!--comment-->
+                                <li class="comment depth-1">
+
+                                    <div class="comment-box">
+                                        <div class="comment-author meta">
+                                            <strong>@yorum.ad @yorum.soyad</strong>  <a href="#" class="comment-reply-link"> @yorum.tarih</a>
+                                        </div>
+                                        <div class="comment-text">
+                                            <p>@yorum.icerik</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!--//comment-->
+                                <!--//comment-->
+
+                            </ol>
+
+                        }
+                    }
                 </div>
+                }
                 <!--//comments-->
                 <!--respond-->
-                <div class="comment-respond" id="respond">
-                    <h2>Leave a reply</h2>
-                    <div class="container">
-                        <p><strong>Note:</strong> Comments on the web site reflect the views of their authors, and not necessarily the views of the socialchef internet portal. Requested to refrain from insults, swearing and vulgar expression. We reserve the right to delete any comment without notice explanations.</p>
-                        <p>Your email address will not be published. Required fields are signed with <span class="req">*</span></p>
-                        <form>
-                            <div class="f-row">
-                                <div class="third">
-                                    <input type="text" placeholder="Your name" />
-                                    <span class="req">*</span>
+                    <div class="comment-respond" id="respond">
+                        <h2>Leave a reply</h2>
+                        <div class="container">
+                            <p><strong>Note:</strong> Comments on the web site reflect the views of their authors, and not necessarily the views of the socialchef internet portal. Requested to refrain from insults, swearing and vulgar expression. We reserve the right to delete any comment without notice explanations.</p>
+                            <p>Your email address will not be published. Required fields are signed with <span class="req">*</span></p>
+
+                            @using (Html.BeginForm())
+                            {
+                                <div class="f-row">
+                                    <div class="third">
+                                        <input type="text" name="ad" placeholder="isminizi  giriniz" />
+                                        <span class="req">*</span>
+                                    </div>
+                                    <div class="third">
+                                        <input type="text" name="soyad" placeholder="soyadınızı  giriniz" />
+                                        <span class="req">*</span>
+                                    </div>
+                                </div>
+                                <div class="f-row">
+                                    <textarea  name="icerik"></textarea>
                                 </div>
 
-                                <div class="third">
-                                    <input type="email" placeholder="Your email" />
-                                    <span class="req">*</span>
+                                <div class="f-row">
+                                    <div class="third bwrap">
+                                        <button name="id" val type="submit" value="@Model.blogID">Ekle</button>
+                                    </div>
                                 </div>
 
-                                <div class="third">
-                                    <input type="text" placeholder="Your website" />
-                                </div>
+                            }
 
-                            </div>
-                            <div class="f-row">
-                                <textarea></textarea>
-                            </div>
 
-                            <div class="f-row">
-                                <div class="third bwrap">
-                                    <input type="submit" value="Submit comment" />
-                                </div>
-                            </div>
-
-                            <div class="bottom">
-                                <div class="f-row checkbox">
-                                    <input type="checkbox" id="ch1" />
-                                    <label for="ch1">Notify me of replies to my comment via e-mail</label>
-                                </div>
-                                <div class="f-row checkbox">
-                                    <input type="checkbox" id="ch2" />
-                                    <label for="ch2">Notify me of new articles by email.</label>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
                 <!--//respond-->
             </section>
             <!--//content-->

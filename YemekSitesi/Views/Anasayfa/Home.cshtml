@@ -129,14 +129,14 @@
                             <article class="entry">
                                 <figure>
                                     <img width="600px;" src="/Content/Resimler/Yemekler/@Model[sayi].resim" alt="" />
-                                    <figcaption><a href="AnaSayfa/YemekDetay/@Model[sayi].yemekID"><i class="icon icon-themeenergy_eye2"></i> <span>Görüntüle</span></a></figcaption>
+                                    <figcaption><a href="/Anasayfa/tarif/@Model[sayi].yemekID"><i class="icon icon-themeenergy_eye2"></i> <span>Görüntüle</span></a></figcaption>
                                 </figure>
                                 <div class="container">
                                     <h2><a href="/Content/social-chef/recipe.html">@Model[sayi].ad</a></h2>
                                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p>
                                     <div class="actions">
                                         <div>
-                                            <a href="/AnaSayfa/TarifListele" class="button">Daha Fazlası</a>
+                                            <a href="/Anasayfa/TarifListele" class="button">Daha Fazlası</a>
                                         </div>
                                     </div>
                                 </div>
@@ -151,14 +151,14 @@
                             <article class="entry">
                                 <figure>
                                     <img src="~/Content/Resimler/Kullanicilar/@Model[sayi].Kullanici.resim" alt="@Model[sayi].Kullanici.ad" />
-                                    <figcaption><a href="my_profile.html"><i class="icon icon-themeenergy_eye2"></i> <span>View member</span></a></figcaption>
+                                    <figcaption><a href="/Anasayfa/KullaniciArama/@Model[sayi].Kullanici.kullaniciID"><i class="icon icon-themeenergy_eye2"></i> <span>Gözat</span></a></figcaption>
                                 </figure>
                                 <div class="container">
-                                    <h2><a href="my_profile.html">@Model[sayi].Kullanici.ad @Model[sayi].Kullanici.soyad</a></h2>
+                                    <h2><a href="/Anasayfa/KullaniciArama/@Model[sayi].Kullanici.kullaniciID">@Model[sayi].Kullanici.ad @Model[sayi].Kullanici.soyad</a></h2>
                                     <blockquote><i class="fa fa-quote-left"></i>Traditional dishes and fine bakery products accompanied by beautiful photographs to bend around and attract the tryout! Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</blockquote>
                                     <div class="actions">
                                         <div>
-                                            <a href="#" class="button">Tariflerini Kontrol Et</a>
+                                            <a href="/Anasayfa/KullaniciArama/@Model[sayi].Kullanici.kullaniciID" class="button">Tariflerini Kontrol Et</a>
                                         </div>
                                     </div>
                                 </div>
@@ -187,7 +187,7 @@
                                     <figcaption><a href="/Anasayfa/Tarif/@yemek.yemekID"><i class="icon icon-themeenergy_eye2"></i> <span>Gözat</span></a></figcaption>
                                 </figure>
                                 <div class="container">
-                                    <h2><a href="recipe.html">Thai fried rice with fruit and vegetables</a></h2>
+                                    <h2><a href="recipe.html">@yemek.aciklama</a></h2>
                                     <div class="actions">
                                         <div>
                                             <div class="difficulty"><i class="ico i-medium"></i><a href="#">@yemek.ZorlukDerecesi.zorlukTanımı</a></div>
@@ -243,7 +243,7 @@
                                             {
                                                 <div class="comments">
                                                     <i class="fa fa-comment"></i><a href="blog_single.html#comments">
-                                                        @blog.Yorum.ad.Count()
+                                                        @blog.Yorum.Count()
                                                     </a>
                                                 </div>
                                             }

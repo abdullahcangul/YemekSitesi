@@ -1801,6 +1801,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Resimler\Kullanicilar\bos.jpg" />
+    <Content Include="Content\Resimler\Kullanicilar\user.png" />
     <Content Include="Content\Resimler\Yemekler\bos.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\social-chef\blog.html" />
@@ -2091,7 +2092,6 @@
     <Compile Include="Models\Yemek.cs" />
     <Compile Include="Models\YemekContext.cs" />
     <Compile Include="Models\Yorum.cs" />
-    <Compile Include="Models\YorumCevap.cs" />
     <Compile Include="Models\ZorlukDerecesi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\HomeModel.cs" />

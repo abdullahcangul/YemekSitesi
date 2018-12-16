@@ -22,7 +22,6 @@
         public virtual DbSet<Ulkeler> Ulkeler { get; set; }
         public virtual DbSet<Yemek> Yemek { get; set; }
         public virtual DbSet<Yorum> Yorum { get; set; }
-        public virtual DbSet<YorumCevap> YorumCevap { get; set; }
         public virtual DbSet<ZorlukDerecesi> ZorlukDerecesi { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

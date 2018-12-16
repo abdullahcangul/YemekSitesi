@@ -25,11 +25,6 @@ namespace YemekSitesi.Controllers
         {
             
             Yorum y = db.Yorum.Where(x => x.yorumID == id).SingleOrDefault();
-            if (y.YorumCevap==null)
-            {
-                TempData["sil"] = "İlk önce Yorum Detayları siliniz";
-                return View(y);
-            }
             db.Yorum.Remove(y);
             db.SaveChanges();
             return Redirect("/Yorumlar/YorumListele/" + id);
@@ -46,21 +41,11 @@ namespace YemekSitesi.Controllers
                 y.onaylimi = true;
             }
             db.SaveChanges();
-            return Redirect("/Yorumlar/YorumDetay/"+id);
+            return Redirect("/Yorumlar/YorumListele/");
         }
-        public ActionResult YorumCevapSil(int id)
-        {
-            YorumCevap y = db.YorumCevap.Where(x => x.YorumCevapID == id).SingleOrDefault();
-            db.YorumCevap.Remove(y);
-            db.SaveChanges();
-            return Redirect("/Yorumlar/YorumListele/" + id);
-        }
+
         
-        public ActionResult YorumCevapDetay(int id)
-        {
-            YorumCevap y = db.YorumCevap.Where(x => x.YorumCevapID == id).SingleOrDefault();
-            return View(y);
-        }
+
 
 
     }
