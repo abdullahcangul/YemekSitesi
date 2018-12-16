@@ -12,7 +12,7 @@ namespace YemekSitesi.Ayarlar
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             string ControllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
-            if (HttpContext.Current.Session["Kullanici"] == null && ControllerName != "Login")
+            if (HttpContext.Current.Session["Kullanici"] == null && ControllerName != "Anasayfa"&& ControllerName!="Login")
             {
                 filterContext.Result = new RedirectResult("/Login/Index");
                 return;
@@ -20,7 +20,11 @@ namespace YemekSitesi.Ayarlar
             if (HttpContext.Current.Session["Kullanici"] != null)
             {
                 Kullanici k = (Kullanici)HttpContext.Current.Session["Kullanici"];
-
+                if (k.adminMi != true && ( (ControllerName == "Kategorik" || ControllerName == "Yonetim" || ControllerName == "Yorum" )&& ControllerName != "Anasayfa"))
+                {
+                    filterContext.Result = new RedirectResult("/Home/Index");
+                    return;
+                }
             }
             base.OnActionExecuting(filterContext);
         }

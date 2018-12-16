@@ -1,0 +1,13 @@
+﻿@model Kullanici
+
+<li class="dropdown">
+    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+        <img width="29" alt="" src="~/Content/Resimler/Kullanicilar/@Model.resim">
+        <span class="username">@Model.ad @Model.soyad</span>
+        <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu extended logout">
+        <div class="log-arrow-up"></div>
+        <li><a href="/Login/Cikis"><i class="icon-key"></i> Çikis Yap</a></li>
+    </ul>
+</li>

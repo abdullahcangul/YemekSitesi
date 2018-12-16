@@ -1,0 +1,67 @@
+﻿@model Kullanici
+
+<ul class="sidebar-menu" id="nav-accordion">
+    <li>
+        <a class="active" href="/Home/Index">
+            <i class="icon-dashboard"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+
+    <li class="sub-menu">
+        <a href="javascript:;">
+            <i class="icon-laptop"></i>
+            <span>Yemek</span>
+        </a>
+        <ul class="sub">
+            <li><a href="/Yemek/YemekListele">Yemek Listesi</a></li>
+            <li><a href="/Yemek/YemekEkle">Yemek Ekle</a></li>
+        </ul>
+    </li>
+    <li class="sub-menu">
+        <a href="javascript:;">
+            <i class="icon-laptop"></i>
+            <span>Blog</span>
+        </a>
+        <ul class="sub">
+            <li><a href="/Blog/BlogListele">Blog Listesi</a></li>
+            <li><a href="/Blog/BlogEkle">Blog Ekle</a></li>
+        </ul>
+    </li>
+    <li class="sub-menu">
+        <a href="javascript:;">
+            <i class="icon-laptop"></i>
+            <span>Yorum</span>
+        </a>
+        <ul class="sub">
+            <li><a href="/Yorumlar/YorumListele">Yorum Listesi</a></li>
+        </ul>
+    </li>
+    @if (Model.adminMi == true)
+    {
+
+        <li class="sub-menu">
+            <a href="javascript:;">
+                <i class="icon-laptop"></i>
+                <span>Kullanici işlemleri</span>
+            </a>
+            <ul class="sub">
+                <li><a href="/Yonetim/KullaniciListele">Kullanıci Listesi</a></li>
+                <li><a href="/Yonetim/KullaniciEkle">Kullanıci Ekle</a></li>
+            </ul>
+        </li>
+        <li class="sub-menu">
+            <a href="javascript:;">
+                <i class="icon-laptop"></i>
+                <span>Tanımlar</span>
+            </a>
+            <ul class="sub">
+                <li><a href="/Kategorik/KategoriListele">Kategori Bilgi Listesi</a></li>
+                <li><a href="/Kategorik/UlkeListele">Ulke Bilgi Listesi</a></li>
+                <li><a href="/Kategorik/ZorlukListele">Zorluk Bilgi Listesi</a></li>
+            </ul>
+        </li>
+
+    }
+
+</ul>

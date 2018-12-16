@@ -253,20 +253,7 @@
                         <input type="text" class="form-control search" placeholder="Search">
                     </li>
                     <!-- user login dropdown start-->
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <img alt="" src="~/Content/Admin/img/avatar1_small.jpg">
-                            <span class="username">Jhon Doue</span>
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu extended logout">
-                            <div class="log-arrow-up"></div>
-                            <li><a href="#"><i class=" icon-suitcase"></i>Profile</a></li>
-                            <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
-                            <li><a href="#"><i class="icon-bell-alt"></i> Notification</a></li>
-                            <li><a href="~/Content/Admin/login.html"><i class="icon-key"></i> Log Out</a></li>
-                        </ul>
-                    </li>
+                    @Html.Action("KullaniciResim","Login") 
                     <!-- user login dropdown end -->
                 </ul>
                 <!--search & user info end-->
@@ -277,65 +264,8 @@
         <aside>
             <div id="sidebar" class="nav-collapse ">
                 <!-- sidebar menu start-->
-                <ul class="sidebar-menu" id="nav-accordion">
-                    <li>
-                        <a class="active" href="/Home/Index">
-                            <i class="icon-dashboard"></i>
-                            <span>Dashboard</span>
-                        </a>
-                    </li>
-
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="icon-laptop"></i>
-                            <span>Yemek</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="/Yemek/YemekListele">Yemek Listesi</a></li>
-                            <li><a href="/Yemek/YemekEkle">Yemek Ekle</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="icon-laptop"></i>
-                            <span>Blog</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="/Blog/BlogListele">Blog Listesi</a></li>
-                            <li><a href="/Blog/BlogEkle">Blog Ekle</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="icon-laptop"></i>
-                            <span>Yönetim</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="/Yonetim/KullaniciListele">Kullanıci Listesi</a></li>
-                            <li><a href="/Yonetim/KullaniciEkle">Kullanıci Ekle</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="icon-laptop"></i>
-                            <span>Yorum</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="/Yorumlar/YorumListele">Yorum Listesi</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="icon-laptop"></i>
-                            <span>Tanımlar</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="/Kategorik/KategoriListele">Kategori Bilgi Listesi</a></li>
-                            <li><a href="/Kategorik/UlkeListele">Ulke Bilgi Listesi</a></li>
-                            <li><a href="/Kategorik/ZorlukListele">Zorluk Bilgi Listesi</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                @Html.Action("KisiyeGoreErisim", "Login")
+                
                 <!-- sidebar menu end-->
             </div>
         </aside>

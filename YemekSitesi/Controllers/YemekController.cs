@@ -71,7 +71,8 @@ namespace YemekSitesi.Controllers
                 }
             }
             y.tarih = DateTime.Now;
-            y.kullaniciID = 1;//düzenle
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            y.kullaniciID =k.kullaniciID ;
             db.Yemek.Add(y);
             db.SaveChanges();
             return RedirectToAction("YemekListele");

@@ -1,14 +1,21 @@
 ﻿
 @{
-    ViewBag.Title = "Giris";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutKullanici.cshtml";
 }
 
+@if (ViewBag.sonuc != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.sonuc
+    </div>
+}
 <main class="main" style="margin-top:100px;" role="main">
     <!--wrap-->
     <div class="wrap clearfix">
         <!--row-->
         <div class="row">
+
             <!--content-->
             <section class="content center full-width">
                 <div class="modal container">
@@ -16,23 +23,23 @@
                     @using (Html.BeginForm())
                     {
                         <div class="f-row">
-                            <input name="ad" type="text" placeholder="Your username" />
+                            <input name="eposta" type="text" placeholder="Eposta adresinizi girin" />
                         </div>
                         <div class="f-row">
-                            <input name="sifre" type="password" placeholder="Your password" />
+                            <input name="sifre" type="password" placeholder="Sifrenizi giriniz" />
                         </div>
 
                         <div class="f-row">
                             <input type="checkbox" />
-                            <label>Remember me next time</label>
+                            <label>Beni Hatirla</label>
                         </div>
 
                         <div class="f-row bwrap">
-                            <input type="submit" value="login" />
+                            <input type="submit" value="Giriş" />
                         </div>
-                        <p>Dont have an account yet? <a href="register.html">Sign up.</a></p>
+                        <p>Henüz kayıt olmadiniz mi? <a href="register.html">Kayıt ol.</a></p>
                     }
-                    </div>
+                </div>
             </section>
             <!--//content-->
         </div>
@@ -40,3 +47,4 @@
     </div>
     <!--//wrap-->
 </main>
+

@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Kullanici k = ViewBag.kisi;
+    int sayac = 1;
 }
 
 
@@ -62,11 +64,11 @@
         <section class="panel">
             <div class="panel-body">
                 <a href="#" class="task-thumb">
-                    <img src="img/avatar1.jpg" alt="">
+                    <img width="90" src="/Content/Resimler/Kullanicilar/@k.resim" alt="">
                 </a>
                 <div class="task-thumb-details">
-                    <h1><a href="#">Anjelina Joli</a></h1>
-                    <p>Senior Architect</p>
+                    <h1><a href="#">@k.ad @k.soyad</a></h1>
+                    <p>@k.meslegi</p>
                 </div>
             </div>
             <table class="table table-hover personal-task">
@@ -105,85 +107,49 @@
         <!--user info table end-->
     </div>
     <div class="col-lg-8">
+
         <!--work progress start-->
+
+
         <section class="panel">
             <div class="panel-body progress-panel">
                 <div class="task-progress">
-                    <h1>Work Progress</h1>
-                    <p>Anjelina Joli</p>
-                </div>
-                <div class="task-option">
-                    <select class="styled hasCustomSelect" style="-webkit-appearance: menulist-button; width: 114px; position: absolute; opacity: 0; height: 39px; font-size: 12px;">
-                        <option>Anjelina Joli</option>
-                        <option>Tom Crouse</option>
-                        <option>Jhon Due</option>
-                    </select><span class="customSelect styled" style="display: inline-block;"><span class="customSelectInner" style="width: 92px; display: inline-block;">Anjelina Joli</span></span>
+                    <h1>Yazarlar</h1>
                 </div>
             </div>
+
             <table class="table table-hover personal-task">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td>Adı</td>
+                        <td>Tarif</td>
+                        <td>Blog</td>
+                    </tr>
+                </thead>
                 <tbody>
+                    @foreach (Kullanici kullanicilar in ViewBag.kullanici)
+                    {
                     <tr>
-                        <td>1</td>
+                        <td>@sayac</td>
                         <td>
-                            Target Sell
+                            @kullanicilar.ad  @kullanicilar.soyad
                         </td>
                         <td>
-                            <span class="badge bg-important">75%</span>
+                            <span class="badge bg-important">@kullanicilar.Yemek.Count</span>
                         </td>
                         <td>
-                            <div id="work-progress1"><canvas width="47" height="20" style="display: inline-block; width: 47px; height: 20px; vertical-align: top;"></canvas></div>
+                            <span class="badge bg-important">@kullanicilar.Blog.Count</span>
                         </td>
+                        @{
+                            sayac = sayac + 1;
+                        }
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            Product Delivery
-                        </td>
-                        <td>
-                            <span class="badge bg-success">43%</span>
-                        </td>
-                        <td>
-                            <div id="work-progress2"><canvas width="47" height="22" style="display: inline-block; width: 47px; height: 22px; vertical-align: top;"></canvas></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>
-                            Payment Collection
-                        </td>
-                        <td>
-                            <span class="badge bg-info">67%</span>
-                        </td>
-                        <td>
-                            <div id="work-progress3"><canvas width="47" height="22" style="display: inline-block; width: 47px; height: 22px; vertical-align: top;"></canvas></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>
-                            Work Progress
-                        </td>
-                        <td>
-                            <span class="badge bg-warning">30%</span>
-                        </td>
-                        <td>
-                            <div id="work-progress4"><canvas width="47" height="22" style="display: inline-block; width: 47px; height: 22px; vertical-align: top;"></canvas></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>
-                            Delivery Pending
-                        </td>
-                        <td>
-                            <span class="badge bg-primary">15%</span>
-                        </td>
-                        <td>
-                            <div id="work-progress5"><canvas width="47" height="22" style="display: inline-block; width: 47px; height: 22px; vertical-align: top;"></canvas></div>
-                        </td>
-                    </tr>
+                   
+                    }
                 </tbody>
             </table>
+          
         </section>
         <!--work progress end-->
     </div>
@@ -192,41 +158,13 @@
 <div class="row">
     <div class="col-lg-8">
         <!--latest product info start-->
-        <section class="panel post-wrap pro-box">
-            <aside>
-                <div class="post-info">
-                    <span class="arrow-pro right"></span>
-                    <div class="panel-body">
-                        <h1><strong>popular</strong> <br> Brand of this week</h1>
-                        <div class="desk yellow">
-                            <h3>Dimond Ring</h3>
-                            <p>Lorem ipsum dolor set amet lorem ipsum dolor set amet ipsum dolor set amet</p>
-                        </div>
-                        <div class="post-btn">
-                            <a href="javascript:;">
-                                <i class="icon-chevron-sign-left"></i>
-                            </a>
-                            <a href="javascript:;">
-                                <i class="icon-chevron-sign-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </aside>
-            <aside class="post-highlight yellow v-align">
-                <div class="panel-body text-center">
-                    <div class="pro-thumb">
-                        <img src="img/ring.jpg" alt="">
-                    </div>
-                </div>
-            </aside>
-        </section>
+        
         <!--latest product info end-->
         <!--twitter feedback start-->
         <section class="panel post-wrap pro-box">
             <aside class="post-highlight terques v-align">
                 <div class="panel-body">
-                    <h2>Flatlab is new model of admin dashboard <a href="javascript:;"> http://demo.com/</a> 4 days ago  by jonathan smith</h2>
+                    <h2>"Yeryüzündeki hiç bir gıda, açlık kadar lezzetli değildir."</h2>
                 </div>
             </aside>
             <aside>
@@ -234,7 +172,7 @@
                     <span class="arrow-pro left"></span>
                     <div class="panel-body">
                         <div class="text-center twite">
-                            <h1>Twitter Feed</h1>
+                            <h1>Bizi Takip edin</h1>
                         </div>
 
                         <footer class="social-footer">
@@ -254,11 +192,7 @@
                                         <i class="icon-google-plus"></i>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-pinterest"></i>
-                                    </a>
-                                </li>
+                             
                             </ul>
                         </footer>
                     </div>
@@ -271,43 +205,12 @@
         <div class="row">
             <div class="col-xs-6">
                 <!--pie chart start-->
-                <section class="panel">
-                    <div class="panel-body">
-                        <div class="chart">
-                            <div id="pie-chart"><canvas width="100" height="100" style="display: inline-block; width: 100px; height: 100px; vertical-align: top;"></canvas></div>
-                        </div>
-                    </div>
-                    <footer class="pie-foot">
-                        Free: 260GB
-                    </footer>
-                </section>
+                
                 <!--pie chart start-->
             </div>
             <div class="col-xs-6">
                 <!--follower start-->
-                <section class="panel">
-                    <div class="follower">
-                        <div class="panel-body">
-                            <h4>Jonathan Smith</h4>
-                            <div class="follow-ava">
-                                <img src="img/follower-avatar.jpg" alt="">
-                            </div>
-                        </div>
-                    </div>
-
-                    <footer class="follower-foot">
-                        <ul>
-                            <li>
-                                <h5>2789</h5>
-                                <p>Follower</p>
-                            </li>
-                            <li>
-                                <h5>270</h5>
-                                <p>Following</p>
-                            </li>
-                        </ul>
-                    </footer>
-                </section>
+                
                 <!--follower end-->
             </div>
         </div>
@@ -318,11 +221,11 @@
                     <div class="row">
                         <div class="col-xs-6">
                             <i class="icon-cloud"></i>
-                            California
+                            Düzce
                         </div>
                         <div class="col-xs-6">
                             <div class="degree">
-                                24°
+                                21°
                             </div>
                         </div>
                     </div>
@@ -332,15 +235,15 @@
             <footer class="weather-category">
                 <ul>
                     <li class="active">
-                        <h5>humidity</h5>
+                        <h5>Nem</h5>
                         56%
                     </li>
                     <li>
-                        <h5>precip</h5>
+                        <h5>Basınç</h5>
                         1.50 in
                     </li>
                     <li>
-                        <h5>winds</h5>
+                        <h5>Rüzgar</h5>
                         10 mph
                     </li>
                 </ul>

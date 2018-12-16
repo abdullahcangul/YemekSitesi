@@ -47,6 +47,7 @@
                             <th><i class="icon-bullhorn"></i> Sıra No</th>
                             <th class="hidden-phone"><i class="icon-question-sign"></i> Aciklama</th>
                             <th></th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -54,14 +55,15 @@
                         {
                             foreach (var tarif in Model.Tarif)
                             {
-                                <tr>
-                                    <td><a href="#">@tarif.siraNo</a></td>
-                                    <td class="hidden-phone">@tarif.aciklama</td>
-                                    <td>
-                                        <a href="/Yemek/TarifDuzenle/@tarif.tarifID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i></a>
-                                        <a href="/Yemek/TarifSil/@tarif.tarifID" onclick="return confirm('Silmek istediğinizden emin misiniz ?')" class="btn btn-danger btn-xs"><i class="icon-trash "></i></a>
-                                    </td>
-                                </tr>
+                        <tr>
+                            <td><a href="#"> @tarif.siraNo</a></td>
+                            <td class="hidden-phone">@tarif.aciklama</td>
+                            <td>
+                                <a href="/Yemek/TarifDuzenle/@tarif.tarifID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i></a>
+                            
+                                <a href="/Yemek/TarifSil/@tarif.tarifID" onclick="return confirm('Silmek istediğinizden emin misiniz ?')" class="btn btn-danger btn-xs"><i class="icon-trash "></i></a>
+                            </td>
+                        </tr>
                             }
                         }
                         </tbody>

@@ -15,17 +15,14 @@ namespace YemekSitesi.Content
         public ActionResult Index()
         {
             HomeModel hm = new HomeModel();
-            Kullanici kisi = db.Kullanici.Where(x => x.kullaniciID == 1).SingleOrDefault();//sesindan kullanici al
-            List<Kullanici> k = db.Kullanici.OrderByDescending(x=>x.Yemek.Count).ToList();
-            List<Blog> b = db.Blog.ToList();
-            List<Yorum> y = db.Yorum.ToList();
-            List<Yemek> ye = db.Yemek.ToList();
-            hm.kullaniciSayisi=k.Count();
-            hm.blogSayisi =b.Count();
-            hm.yorumSayisi = y.Count() + y.Count();
-            hm.yemekSayisi = ye.Count();
-            //hm.kisi=kisi;
+            Kullanici kisi =(Kullanici) Session["Kullanici"];
+            List<Kullanici> k = db.Kullanici.OrderByDescending(x=>x.Yemek.Count).Take(5).ToList();
+            hm.kullaniciSayisi= db.Kullanici.Count();
+            hm.blogSayisi = db.Blog.Count();
+            hm.yorumSayisi = db.Yorum.Count();
+            hm.yemekSayisi = db.Yemek.Count();
             ViewBag.kullanici = k;
+            ViewBag.kisi = kisi;
             return View(hm);
         }
       

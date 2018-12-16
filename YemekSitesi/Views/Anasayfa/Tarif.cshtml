@@ -78,37 +78,31 @@
                 <!--comments-->
                 @if (@Model.Yorum != null)
                 {
-                <div class="comments" id="comments">
-                    <h2>Yorum Sayısı @Model.Yorum.Count </h2>
-                    @foreach (var yorum in Model.Yorum)
-                    {
-                        if (yorum.onaylimi == true)
+                    <div class="comments" id="comments">
+                        <h2>Yorum Sayısı @Model.Yorum.Count </h2>
+                        @foreach (var yorum in Model.Yorum)
                         {
-                            <ol class="comment-list">
-                                <!--comment-->
-                                <li class="comment depth-1">
+                            if (yorum.onaylimi == true)
+                            {
+                                <ol class="comment-list">
+                                    <!--comment-->
+                                    <li class="comment depth-1">
 
-                                    <div class="comment-box">
-                                        <div class="comment-author meta">
-                                            <strong>@yorum.ad @yorum.soyad</strong>  <a href="#" class="comment-reply-link"> @yorum.tarih</a>
+                                        <div class="comment-box">
+                                            <div class="comment-author meta">
+                                                <strong>@yorum.ad @yorum.soyad</strong>  <a href="#" class="comment-reply-link"> @yorum.tarih</a>
+                                            </div>
+                                            <div class="comment-text">
+                                                <p>@yorum.icerik</p>
+                                            </div>
                                         </div>
-                                        <div class="comment-text">
-                                            <p>@yorum.icerik</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <!--//comment-->
-                                <!--//comment-->
-
-                            </ol>
-
+                                    </li>
+                                    <!--//comment-->
+                                </ol>
+                            }
                         }
-                    }
-                </div>
+                    </div>
                 }
-
-
-                
                 <!--//comments-->
                 <!--respond-->
                 <div class="comment-respond" id="respond">
@@ -116,32 +110,29 @@
                     <div class="container">
                         <p><strong>Note:</strong> Comments on the web site reflect the views of their authors, and not necessarily the views of the socialchef internet portal. Requested to refrain from insults, swearing and vulgar expression. We reserve the right to delete any comment without notice explanations.</p>
                         <p>Your email address will not be published. Required fields are signed with <span class="req">*</span></p>
-                      
-                            @using (Html.BeginForm())
-                            {
-                                <div class="f-row">
-                                    <div class="third">
-                                        <input type="text" name="ad" placeholder="isminizi  giriniz" />
-                                        <span class="req">*</span>
-                                    </div>
-                                    <div class="third">
-                                        <input type="text" name="soyad" placeholder="soyadınızı  giriniz" />
-                                        <span class="req">*</span>
-                                    </div>
-                                </div>
-                                <div class="f-row" >
-                                    <textarea name="icerik"></textarea>
-                                </div>
 
-                                <div class="f-row">
-                                    <div class="third bwrap">
-                                        <button name="id" val type="submit"  value="@Model.yemekID" >Ekle</button>
-                                    </div>
+                        @using (Html.BeginForm())
+                        {
+                            <div class="f-row">
+                                <div class="third">
+                                    <input type="text" name="ad" placeholder="isminizi  giriniz" />
+                                    <span class="req">*</span>
                                 </div>
+                                <div class="third">
+                                    <input type="text" name="soyad" placeholder="soyadınızı  giriniz" />
+                                    <span class="req">*</span>
+                                </div>
+                            </div>
+                            <div class="f-row">
+                                <textarea name="icerik"></textarea>
+                            </div>
 
-                            }
-
-                       
+                            <div>
+                                <div class="third bwrap">
+                                    <button name="id" val type="submit" value="@Model.yemekID">Ekle</button>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
                 <!--//respond-->
@@ -159,12 +150,8 @@
                                 <td>@bd.deger</td>
                             </tr>
                         }
-
-
                     </table>
                 </div>
-
-
                 <div class="widget share">
                     <ul class="boxed">
                         <li class="light"><a href="#" title="Facebook"><i class="fa fa-facebook"></i> <span>Share on Facebook</span></a></li>
@@ -172,9 +159,7 @@
                         <li class="dark"><a href="#" title="Favourites"><i class="fa fa-heart"></i> <span>Add to Favourites</span></a></li>
                     </ul>
                 </div>
-
                 <div class="widget members">
-
                     @Html.Action("KullaniciLar", "Anasayfa")
                 </div>
             </aside>

@@ -57,6 +57,8 @@ namespace YemekSitesi.Controllers
                     blog.resim = yeniResimAdi;
                 }
             }
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            blog.kullanıcıID = k.kullaniciID;
             blog.tarih = DateTime.Now;
             db.Blog.Add(blog);
             db.SaveChanges();
