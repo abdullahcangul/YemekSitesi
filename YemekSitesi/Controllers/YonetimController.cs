@@ -111,7 +111,10 @@ namespace YemekSitesi.Controllers
                 // yeni resmi at
                 ku.resim = k.resim;
             }
-
+            if (k.sifre == null)
+            {
+                k.sifre = ku.sifre;
+            }
             ku.ad = k.ad;
             ku.eposta = k.eposta;
             ku.sifre = k.sifre;

@@ -17,7 +17,7 @@ namespace YemekSitesi.Controllers
         {
             ViewBag.Blog = db.Blog.Take(3).ToList();
             HomeModel hm = new HomeModel();
-             hm.yemekSayisi= db.Yemek.Count();
+            hm.yemekSayisi = db.Yemek.Count();
             hm.blogSayisi = db.Blog.Count();
             hm.kullaniciSayisi = db.Kullanici.Count();
             hm.yorumSayisi = db.Yorum.Count();
@@ -25,28 +25,28 @@ namespace YemekSitesi.Controllers
             return View(db.Yemek.Take(6).ToList());
         }
         //q ile button gizleme yapıldı
-        public ActionResult TarifListele(int? id,string q)
+        public ActionResult TarifListele(int? id, string q)
         {
             ViewBag.Kategori = db.Kategori.ToList();
             List<Yemek> y;
-            if (q=="gizle")
+            if (q == "gizle")
             {
-                 y = db.Yemek.ToList();
+                y = db.Yemek.ToList();
                 ViewBag.denetle = "aa";
             }
             else
             {
                 y = db.Yemek.Take(12).ToList();
             }
-            if (id!=null)
+            if (id != null)
             {
-                if(db.Yemek.Where(x => x.kategoriID == id).Count() <= 0)
+                if (db.Yemek.Where(x => x.kategoriID == id).Count() <= 0)
                 {
                     ViewBag.denetle = "aabb";
                 }
                 return View(db.Yemek.Where(x => x.kategoriID == id).ToList());
             }
-            
+
             return View(y);
         }
         public ActionResult Tarif(int id)
@@ -55,7 +55,7 @@ namespace YemekSitesi.Controllers
             return View(y);
         }
         [HttpPost]
-        public ActionResult Tarif(Yorum y,int id)
+        public ActionResult Tarif(Yorum y, int id)
         {
             Yemek ye = db.Yemek.Where(x => x.yemekID == id).SingleOrDefault();
             y.yemekID = ye.yemekID;
@@ -79,6 +79,7 @@ namespace YemekSitesi.Controllers
             }
             if (id != null)
             {
+                //Bloglar içindeki buttonları gizler id kategoriden gelir
                 if (db.Blog.Where(x => x.KategoriID == id).Count() <= 0)
                 {
                     ViewBag.denetle = "aabb";
@@ -90,7 +91,7 @@ namespace YemekSitesi.Controllers
         }
         public ActionResult Blog(int id)
         {
-            Blog blog = db.Blog.Where(x=>x.blogID==id).SingleOrDefault();
+            Blog blog = db.Blog.Where(x => x.blogID == id).SingleOrDefault();
             ViewBag.Kategori = db.Kategori.ToList();
             return View(blog);
         }
@@ -109,7 +110,7 @@ namespace YemekSitesi.Controllers
         {
             return View();
         }
-        
+
         public ActionResult KayıtOl()
         {
             return View(new Kullanici());
@@ -121,7 +122,7 @@ namespace YemekSitesi.Controllers
             {
                 return View(db.Yemek.Where(x => x.Kategori.kategoriID == id).ToList());
             }
-            
+
             return View(db.Yemek.ToList());
         }
         [HttpPost]
@@ -136,7 +137,6 @@ namespace YemekSitesi.Controllers
         {
             if (ModelState.IsValid == false) // validation false gelirse hata var
             {
-
                 return View();
             }
             if (resimGelen == null)
@@ -192,5 +192,9 @@ namespace YemekSitesi.Controllers
             return PartialView("_KategoriResimsizListele", @db.Kategori.ToList());
         }
 
+        public PartialViewResult resimsizKategorilerBlog()
+        {
+            return PartialView("__KategoriBlogResimsizListele", @db.Kategori.ToList());
+        }
     }
 }

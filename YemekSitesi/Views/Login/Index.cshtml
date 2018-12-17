@@ -4,21 +4,22 @@
     Layout = "~/Views/Shared/_LayoutKullanici.cshtml";
 }
 
-@if (ViewBag.sonuc != null)
-{
-    <div class="alert alert-danger" role="alert">
-        @ViewBag.sonuc
-    </div>
-}
+
 <main class="main" style="margin-top:100px;" role="main">
     <!--wrap-->
     <div class="wrap clearfix">
         <!--row-->
         <div class="row">
-
+        
             <!--content-->
             <section class="content center full-width">
                 <div class="modal container">
+                    @if (ViewBag.sonuc != null)
+                    {
+                        <div class="alert alert-danger " role="alert">
+                            @ViewBag.sonuc
+                        </div>
+                    }
                     <h3>Giriş</h3>
                     @using (Html.BeginForm())
                     {

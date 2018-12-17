@@ -14,7 +14,12 @@ namespace YemekSitesi.Controllers
         // GET: Blog
         public ActionResult BlogListele()
         {
-            return View(db.Blog.OrderByDescending(x=>x.tarih).ToList());
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            if (k.adminMi == true)
+            {
+                return View(db.Blog.OrderByDescending(x => x.tarih).ToList());
+            }
+            return View(db.Blog.Where(x=>x.kullanıcıID==k.kullaniciID).OrderByDescending(x=>x.tarih).ToList());
         }
         public ActionResult BlogEkle()
         {

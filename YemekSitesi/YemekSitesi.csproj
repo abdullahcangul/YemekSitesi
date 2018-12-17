@@ -2154,6 +2154,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\PartialViews\_KullaniciResim.cshtml" />
     <Content Include="Views\Login\PartialViews\_ErisimListesi.cshtml" />
+    <Content Include="Views\Shared\__KategoriBlogResimsizListele.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -19,7 +19,13 @@ namespace YemekSitesi.Controllers
         }
         public ActionResult YemekListele()
         {
-            return View(db.Yemek.OrderByDescending(x => x.tarih).ToList());
+            //Admin sie tüm yemekleri gor degil ise sadece kendi yeeklerini gorsun
+            Kullanici k = (Kullanici)Session["Kullanici"];
+            if (k.adminMi==true)
+            {
+                return View(db.Yemek.OrderByDescending(x => x.tarih).ToList());
+            }
+            return View(db.Yemek.Where(x => x.kullaniciID == k.kullaniciID).OrderByDescending(x => x.tarih).ToList());
         }
         public ActionResult YemekEkle()
         {

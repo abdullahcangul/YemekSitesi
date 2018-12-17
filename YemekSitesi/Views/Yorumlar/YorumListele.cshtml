@@ -3,15 +3,7 @@
     ViewBag.Title = "YorumListele";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-@if (TempData["sil"] != null)
-{
-    <div class="alert alert-block alert-danger fade in">
-        <button data-dismiss="alert" class="close close-sm" type="button">
-            <i class="icon-remove"></i>
-        </button>
-        <strong>Hata!!!</strong> İlk Önce Yorum Cevaplari silin.
-    </div>
-}
+
 <div class="row">
     <div class="col-lg-12">
         <section class="panel">

@@ -17,10 +17,11 @@ namespace YemekSitesi.Ayarlar
                 filterContext.Result = new RedirectResult("/Login/Index");
                 return;
             }
-            if (HttpContext.Current.Session["Kullanici"] != null)
+           
+            if (HttpContext.Current.Session["Kullanici"] != null )
             {
                 Kullanici k = (Kullanici)HttpContext.Current.Session["Kullanici"];
-                if (k.adminMi != true && ( (ControllerName == "Kategorik" || ControllerName == "Yonetim" || ControllerName == "Yorum" )&& ControllerName != "Anasayfa"))
+                if ( (  ControllerName == "Kategorik" || ControllerName == "Yonetim" || ControllerName == "Yorum")  && ControllerName != "Anasayfa"&& k.aktifMi == false )
                 {
                     filterContext.Result = new RedirectResult("/Home/Index");
                     return;

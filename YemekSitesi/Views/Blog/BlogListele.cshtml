@@ -23,31 +23,38 @@
             </tr>
         </thead>
         <tbody>
+            @if (Model.Count == 0)
+            {
+
+                <div class=" alert alert-info">
+                    Kullaniciya ait kayıt bulunamadı
+                </div>
+            }
             @foreach (var blog in Model)
             {
-            <tr>
+                <tr>
 
-                <td><a href="#">@blog.baslik</a></td>
-                @if (blog.icerik.Length > 2)
-                {
-                    <td>
-                        @blog.icerik.Substring(0, 2)
-                    </td>
-                }
-                else
-                {
-                    <td>
-                        @blog.icerik.
-                    </td>
-                }
-                <td><a href="#">@blog.Kategori.kategoriAdi</a></td>
-                <td><a href="#">@blog.tarih</a></td>
+                    <td><a href="#">@blog.baslik</a></td>
+                    @if (blog.icerik.Length > 2)
+                    {
+                        <td>
+                            @blog.icerik.Substring(0, 2)
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @blog.icerik.
+                        </td>
+                    }
+                    <td><a href="#">@blog.Kategori.kategoriAdi</a></td>
+                    <td><a href="#">@blog.tarih</a></td>
 
-                <td>
-                    <a href="/Blog/BlogDuzenle/@blog.blogID" class="btn btn-primary btn-xs"> <i class="icon-pencil"></i></a>
-                    <a href="/Blog/BlogSil/@blog.blogID" onclick="return confirm('Silmek istediğinizden emin misiniz ?')" class="btn btn-danger btn-xs"><i class="icon-trash "></i></a>
-                </td>
-            </tr>
+                    <td>
+                        <a href="/Blog/BlogDuzenle/@blog.blogID" class="btn btn-primary btn-xs"> <i class="icon-pencil"></i></a>
+                        <a href="/Blog/BlogSil/@blog.blogID" onclick="return confirm('Silmek istediğinizden emin misiniz ?')" class="btn btn-danger btn-xs"><i class="icon-trash "></i></a>
+                    </td>
+                </tr>
             }
 
         </tbody>

@@ -1,0 +1,8 @@
+﻿@model List<Kategori>
+
+
+@foreach (var item in @Model)
+{
+    <li><a href="/Anasayfa/Bloglar/@item.kategoriID">@item.kategoriAdi</a></li>
+}
+
