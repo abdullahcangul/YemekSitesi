@@ -52,17 +52,29 @@ namespace YemekSitesi.Controllers
         public ActionResult Tarif(int id)
         {
             Yemek y = db.Yemek.Where(x => x.yemekID == id).SingleOrDefault();
+            TempData["yemekId"] = id;
             return View(y);
         }
         [HttpPost]
-        public ActionResult Tarif(Yorum y, int id)
+        [ValidateAntiForgeryToken]
+        public ActionResult Tarif(Yorum y)
         {
-            Yemek ye = db.Yemek.Where(x => x.yemekID == id).SingleOrDefault();
-            y.yemekID = ye.yemekID;
-            y.onaylimi = false;
-            y.tarih = DateTime.Now;
-            db.Yorum.Add(y);
-            db.SaveChanges();
+            int id =(int) TempData["yemekId"];
+            Yemek ye=db.Yemek.Where(x => x.yemekID == id).SingleOrDefault(); ;
+            try
+            {
+                ye = db.Yemek.Where(x => x.yemekID == id).SingleOrDefault();
+                y.yemekID = ye.yemekID;
+                y.onaylimi = false;
+                y.tarih = DateTime.Now;
+                db.Yorum.Add(y);
+                db.SaveChanges();
+            }
+            catch
+            {
+
+                return View(ye);
+            }
             return View(ye);
         }
         public ActionResult Bloglar(int? id, string q)
@@ -93,28 +105,70 @@ namespace YemekSitesi.Controllers
         {
             Blog blog = db.Blog.Where(x => x.blogID == id).SingleOrDefault();
             ViewBag.Kategori = db.Kategori.ToList();
+            TempData["blogId"] = id;
             return View(blog);
         }
         [HttpPost]
-        public ActionResult Blog(Yorum y, int id)
+        [ValidateAntiForgeryToken]
+        public ActionResult Blog(Yorum y)
         {
+            int id = (int)TempData["blogId"];
             Blog ye = db.Blog.Where(x => x.blogID == id).SingleOrDefault();
-            y.blogID = ye.blogID;
-            y.onaylimi = false;
-            y.tarih = DateTime.Now;
-            db.Yorum.Add(y);
-            db.SaveChanges();
+            try
+            {
+                y.blogID = ye.blogID;
+                y.onaylimi = false;
+                y.tarih = DateTime.Now;
+                db.Yorum.Add(y);
+                db.SaveChanges();
+                TempData["uyari"] =" yorum basarı ile eklendi";
+            }
+            catch (Exception)
+            {
+                TempData["tehlikeli"] = "Yorum gonderirken hata olustu";
+                return View(ye);
+            }
+   
             return View(ye);
         }
         public ActionResult Iletisim()
         {
-            return View();
+            return View(new Iletisim());
         }
 
-        public ActionResult KayıtOl()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Iletisim(Iletisim i)
         {
-            return View(new Kullanici());
+            try
+            {
+                if (ModelState.IsValid == false)
+                {
+                    ViewBag.Sonuc = "Gecersiz islem";
+                    return View();
+                }
+                else
+                {
+                    i.tarih = DateTime.Now;
+                    i.telefon = i.telefon.ToString();
+                    db.Iletisim.Add(i);
+                    db.SaveChanges();
+                    TempData["uyari"] = "Mesajınız alınmıştır";
+                    return View();
+
+                }
+            }
+            catch (Exception)
+            {
+                TempData["tehlikeli"] = "Hata olustu";
+                return View();
+                
+            }
+           
         }
+
+
+
         public ActionResult Arama(int? id)
         {
             ViewBag.kategoriler = db.Kategori.ToList();
@@ -131,45 +185,73 @@ namespace YemekSitesi.Controllers
             ViewBag.kategoriler = db.Kategori.ToList();
             return View(db.Yemek.Where(x => x.ad.Contains(ad)).ToList());
         }
-
+        public ActionResult KayıtOl()
+        {
+            return View(new Kullanici());
+        }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult KayıtOl(Kullanici k, HttpPostedFileBase resimGelen)
         {
-            if (ModelState.IsValid == false) // validation false gelirse hata var
+            try
             {
-                return View();
-            }
-            if (resimGelen == null)
-            {
-                k.resim = "bos.png";
-            }
-            else
-            {
-                string yeniResimAdi = "";
-                ResimIslemleri r = new ResimIslemleri();
-                yeniResimAdi = r.Ekle(resimGelen, "Kullanicilar");
-                //yeniResimAdi = new ResimIslem().Ekle(resimGelen);
-
-                if (yeniResimAdi == "uzanti")
+                Kullanici kul = db.Kullanici.Where(x => x.eposta == k.eposta).SingleOrDefault();
+                if (kul != null)
                 {
-                    ViewData["Hata"] = "Lütfen .png veya .jpg uzantılı dosya giriniz.";
+                    ViewData["Hata"] = "Kayıtlı bir eposta kullandınız!!!";
                     return View();
                 }
-                else if (yeniResimAdi == "boyut")
+                if (ModelState.IsValid == false) // validation false gelirse hata var
                 {
-                    ViewData["Hata"] = "En fazla 1MB boyutunda dosya girebilirsiniz.";
+                    ViewData["Hata"] = "";
                     return View();
+                }
+                if (resimGelen == null)
+                {
+                    k.resim = "bos.png";
                 }
                 else
                 {
-                    k.resim = yeniResimAdi;
+                    string yeniResimAdi = "";
+                    ResimIslemleri r = new ResimIslemleri();
+                    yeniResimAdi = r.Ekle(resimGelen, "Kullanicilar");
+                    //yeniResimAdi = new ResimIslem().Ekle(resimGelen);
+
+                    if (yeniResimAdi == "uzanti")
+                    {
+                        ViewData["Hata"] = "Lütfen .png veya .jpg uzantılı dosya giriniz.";
+                        return View();
+                    }
+                    else if (yeniResimAdi == "boyut")
+                    {
+                        ViewData["Hata"] = "En fazla 1MB boyutunda dosya girebilirsiniz.";
+                        return View();
+                    }
+                    else
+                    {
+                        k.resim = yeniResimAdi;
+                    }
                 }
+
+                k.adminMi = false;
+                k.aktifMi = false;
+                db.Kullanici.Add(k);
+                db.SaveChanges();
+                TempData["uyari"] = "Kayıt işleminiz alınmıştır";
             }
-            db.Kullanici.Add(k);
-            db.SaveChanges();
-            return RedirectToAction("Home");
+            catch (Exception)
+            {
+                TempData["tehlikeli"] = "Hata olustu";
+                return View();
+            }
+            
+            return View();
         }
         public ActionResult Giris()
+        {
+            return View();
+        }
+        public ActionResult hataSayfasi()
         {
             return View();
         }

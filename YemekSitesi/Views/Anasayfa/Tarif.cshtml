@@ -15,6 +15,18 @@
                 <li>@Model.ad</li>
             </ul>
         </nav>
+        @if (TempData["tehlikeli"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["tehlikeli"]
+            </div>
+        }
+        @if (TempData["uyari"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["uyari"]
+            </div>
+        }
         <!--//breadcrumbs-->
         <!--row-->
         <div class="row">
@@ -78,7 +90,7 @@
                 @if (@Model.Yorum != null)
                 {
                     <div class="comments" id="comments">
-                        <h2>Yorum Sayısı @Model.Yorum.Count </h2>
+                        <h2>Yorum Sayısı @Model.Yorum.Where(x => x.onaylimi == true).Count() </h2>
                         @foreach (var yorum in Model.Yorum)
                         {
                             if (yorum.onaylimi == true)
@@ -107,23 +119,24 @@
                 <div class="comment-respond" id="respond">
                     <h2>Leave a reply</h2>
                     <div class="container">
-                        <p><strong>Note:</strong> Comments on the web site reflect the views of their authors, and not necessarily the views of the socialchef internet portal. Requested to refrain from insults, swearing and vulgar expression. We reserve the right to delete any comment without notice explanations.</p>
-                        <p>Your email address will not be published. Required fields are signed with <span class="req">*</span></p>
+                        <p><strong>Not:</strong> Bloglarda yer alan bilgiler yazarlarının görüşlerini yansıtmaktadır. Lütfen hakaret, küfür ve kaba ifadeler kullanmayın.</p>
+                        <p>Bildiride bulunmadan herhangi bir yorumu silme hakkımızı korumaktayız. <span class="req">*</span></p>
 
                         @using (Html.BeginForm())
                         {
+                            @Html.AntiForgeryToken()
                             <div class="f-row">
                                 <div class="third">
-                                    <input type="text" name="ad" placeholder="isminizi  giriniz" />
+                                    <input type="text" name="ad" placeholder="İsminizi  giriniz" required />
                                     <span class="req">*</span>
                                 </div>
                                 <div class="third">
-                                    <input type="text" name="soyad" placeholder="soyadınızı  giriniz" />
+                                    <input type="text" name="soyad" placeholder="Soyadınızı  giriniz" required />
                                     <span class="req">*</span>
                                 </div>
                             </div>
                             <div class="f-row">
-                                <textarea name="icerik"></textarea>
+                                <textarea name="icerik" required></textarea>
                             </div>
 
                             <div>

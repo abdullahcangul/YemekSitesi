@@ -3,15 +3,28 @@
     ViewBag.Title = "KullaniciDetay";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
+@if (TempData["hata"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["hata"]
+    </div>
+}
+@if (TempData["uyari"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["uyari"]
+    </div>
+}
 <section class="panel">
+
     <div class="twt-feed blue-bg">
-        <h1>Jonathan Smith</h1>
-        <p>jsmith@flatlab.com</p>
+        <h1>@Model.ad</h1>
+        <p>@Model.eposta</p>
         <a href="#">
             <img src="~/Content/Resimler/Kullanicilar/@Model.resim" alt="">
         </a>
     </div>
+
     <div class="weather-category twt-category">
         <ul>
             <li class="active">
@@ -20,11 +33,11 @@
             </li>
             <li>
                 <h5>@Model.Blog.Count</h5>
-                Blog 
+                Blog
             </li>
             <li>
                 <h5>@Model.Yemek.Count</h5>
-                Tarif 
+                Tarif
             </li>
         </ul>
     </div>
@@ -39,18 +52,18 @@
             {
                 <a class="btn btn-sm btn-danger" href="/Yonetim/AktifEt/@Model.kullaniciID">Admin Et</a>
             }
-            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
             &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp
             &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp
-            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp
+
             Kullanici Aktifmi?  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp
             @if (Model.aktifMi == true)
             {
-                <a class="btn btn-sm btn-danger" href="/Yonetim/AktifEt2/@Model.kullaniciID">Aktif Et</a>
+                <a class="btn btn-sm btn-danger" href="/Yonetim/AktifEt2/@Model.kullaniciID">Pasif Et</a>
             }
             else
             {
-                <a class="btn btn-sm btn-danger" href="/Yonetim/AktifEt2/@Model.kullaniciID">Pasif Et</a>
+                <a class="btn btn-sm btn-danger" href="/Yonetim/AktifEt2/@Model.kullaniciID">Aktif Et</a>
             }
         </li>
     </ul>
@@ -64,22 +77,22 @@
         <h1>Biyografi</h1>
         <div class="row">
             <div class="bio-row">
-                <p><span>First Name </span>: @Model.ad</p>
+                <p><span>Adı </span>: @Model.ad</p>
             </div>
             <div class="bio-row">
-                <p><span>Last Name </span>: @Model.soyad</p>
+                <p><span>Soyadı </span>: @Model.soyad</p>
             </div>
             <div class="bio-row">
-                <p><span>Country </span>: @Model.ulkesi</p>
+                <p><span>Ülkesi </span>: @Model.ulkesi</p>
             </div>
             <div class="bio-row">
-                <p><span>Birthday</span>: @Model.dogumTarihi</p>
+                <p><span>Doğum Tarihi </span>: @Model.dogumTarihi</p>
             </div>
             <div class="bio-row">
-                <p><span>Occupation </span>: @Model.meslegi</p>
+                <p><span>Mesleği </span>: @Model.meslegi</p>
             </div>
             <div class="bio-row">
-                <p><span>Email </span>: @Model.eposta</p>
+                <p><span>E-posta </span>: @Model.eposta</p>
             </div>
         </div>
     </div>

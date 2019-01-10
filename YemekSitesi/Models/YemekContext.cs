@@ -14,6 +14,7 @@
 
         public virtual DbSet<BesinDegerleri> BesinDegerleri { get; set; }
         public virtual DbSet<Blog> Blog { get; set; }
+        public virtual DbSet<Iletisim> Iletisim { get; set; }
         public virtual DbSet<Kategori> Kategori { get; set; }
         public virtual DbSet<Kullanici> Kullanici { get; set; }
         public virtual DbSet<Mazeme> Mazeme { get; set; }

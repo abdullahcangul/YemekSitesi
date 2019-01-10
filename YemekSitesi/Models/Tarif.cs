@@ -15,7 +15,7 @@ namespace YemekSitesi.Models
 
         public int? siraNo { get; set; }
 
-        [StringLength(500)]
+        [StringLength(500), Required(ErrorMessage = "Aciklama kýsmý boþ geçilemez."), Display(Name = "Aciklama")]
         public string aciklama { get; set; }
 
         public virtual Yemek Yemek { get; set; }

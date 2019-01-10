@@ -14,10 +14,10 @@ namespace YemekSitesi.Models
 
         public int? yemekID { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50), Required(ErrorMessage = "BesinAdi kýsmý boþ geçilemez."), Display(Name = "BesinAdi")]
         public string besinAdi { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50), Required(ErrorMessage = "Deger kýsmý boþ geçilemez."), Display(Name = "Deger")]
         public string deger { get; set; }
 
         public virtual Yemek Yemek { get; set; }

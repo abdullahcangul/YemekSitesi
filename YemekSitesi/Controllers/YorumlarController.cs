@@ -14,7 +14,15 @@ namespace YemekSitesi.Controllers
         // GET: Yorum
         public ActionResult YorumListele()
         {
-            return View(db.Yorum.ToList());
+           Kullanici k=(Kullanici) Session["Kullanici"];
+            if (k.adminMi==true)
+            {//admin herseyi görebilir
+                return View(db.Yorum.ToList());
+            }
+            else
+            {//Yemek e veya blog a göre yazara özel yorum getirme
+                return View(db.Yorum.Where(x => x.Yemek.kullaniciID == k.kullaniciID||x.Blog.kullanıcıID==k.kullaniciID).ToList());
+            }
         }
         public ActionResult YorumDetay(int id)
         {
@@ -23,30 +31,47 @@ namespace YemekSitesi.Controllers
         }
         public ActionResult YorumSil(int id)
         {
+            try
+            {
+                Yorum y = db.Yorum.Where(x => x.yorumID == id).SingleOrDefault();
+                db.Yorum.Remove(y);
+                db.SaveChanges();
+                TempData["uyari"] = "Yorum basarı ile silindi";
+            }
+            catch (Exception)
+            {
+
+                TempData["tehlikeli"] = "hata olustu";
+                return Redirect("/Yorumlar/YorumListele/" + id);
+            }
             
-            Yorum y = db.Yorum.Where(x => x.yorumID == id).SingleOrDefault();
-            db.Yorum.Remove(y);
-            db.SaveChanges();
             return Redirect("/Yorumlar/YorumListele/" + id);
         }
         public ActionResult YorumOnay(int id)
         {
-            Yorum y = db.Yorum.Where(x => x.yorumID == id).SingleOrDefault();
-            if (y.onaylimi==true)
+            try
             {
-                y.onaylimi = false;
+                Yorum y = db.Yorum.Where(x => x.yorumID == id).SingleOrDefault();
+                if (y.onaylimi == true)
+                {
+                    y.onaylimi = false;
+                    TempData["uyari"] = "Yorum onay kaldırılmıştır";
+                }
+                else
+                {
+                    y.onaylimi = true;
+                    TempData["uyari"] = "Yorum Onaylanmıştır";
+                }
+                db.SaveChanges();
+                
             }
-            else
+            catch (Exception)
             {
-                y.onaylimi = true;
+                TempData["tehlikeli"] = "hata olustu";
+                return Redirect("/Yorumlar/YorumListele/");
             }
-            db.SaveChanges();
+          
             return Redirect("/Yorumlar/YorumListele/");
         }
-
-        
-
-
-
     }
 }

@@ -17,7 +17,7 @@ namespace YemekSitesi.Models
 
         public int zorlukDerecesiID { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50), Required(ErrorMessage = "Zorluk Tanımı kısmı boş geçilemez."), Display(Name = "Zorluk Tanımı")]
         public string zorlukTanımı { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

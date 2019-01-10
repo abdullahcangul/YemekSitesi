@@ -20,31 +20,31 @@ namespace YemekSitesi.Models
 
         public int yemekID { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50), Required(ErrorMessage = "Ad  kýsmý boþ geçilemez."), Display(Name = "Ad")]
         public string ad { get; set; }
 
-        [StringLength(300)]
+        [StringLength(300), Required(ErrorMessage = "Aciklama kýsmý boþ geçilemez."), Display(Name = "Aciklama")]
         public string aciklama { get; set; }
-
+        [Display(Name = "Kategoriler")]
         public int? kategoriID { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50), Required(ErrorMessage = "Kaç kiþilik kýsmý boþ geçilemez."), Display(Name = "Kaç kiþilik")]
         public string kacKisilik { get; set; }
-
+        [Required(ErrorMessage = "Pisirme Suresi kýsmý boþ geçilemez."), Display(Name = "Pisirme Suresi")]
         public int? pisirmeSuresi { get; set; }
-
+        [Display(Name = "Kullanýcýlar")]
         public int? kullaniciID { get; set; }
 
         [StringLength(100)]
         public string resim { get; set; }
 
-        [Column(TypeName = "smalldatetime")]
+        [Column(TypeName = "smalldatetime"),Display(Name = "Tarih")]
         public DateTime? tarih { get; set; }
 
         public bool? aktifMi { get; set; }
-
+        [Display(Name = "Zorluk Derecesi")]
         public int? zorlukDerecesiID { get; set; }
-
+        [Display(Name = "Ulkeler")]
         public int? ulkeID { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

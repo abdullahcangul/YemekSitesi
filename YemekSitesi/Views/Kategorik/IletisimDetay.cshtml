@@ -1,0 +1,40 @@
+﻿@model Iletisim
+@{
+    ViewBag.Title = "IletisimDetay";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="panel">
+
+    <div class="panel-body bio-graph-info">
+        <h1>Iletişim</h1>
+        <div class="row">
+            <div class="col-md-3">
+                <p><span>Adı</span>: @Model.isim </p>
+            </div>
+            <div class="col-md-3">
+                <p><span>Telefon</span>: @Model.telefon </p>
+            </div>
+            <div class="col-md-3">
+                <p><span>Eposta</span>: @Model.eposta </p>
+            </div>
+            <br />
+
+            <div class="col-md-6">
+                <p><span>Yorum icerigi </span>: @Model.icerik</p>
+            </div>
+            
+
+            @using (Html.BeginForm())
+            {
+                <input name="icerik" class="form-control"  />
+                <br />
+
+                <button type="submit" class="btn btn-info">   Gönder   </button>
+
+            }
+
+
+        </div>
+    </div>
+</section>

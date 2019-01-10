@@ -13,12 +13,12 @@ namespace YemekSitesi.Models
 
         public int? yemekID { get; set; }
 
-        [StringLength(100)]
+        [StringLength(100), Required(ErrorMessage = "Mazeme Adi kýsmý boþ geçilemez."), Display(Name = "Mazeme Adi")]
         public string mazemeAdi { get; set; }
 
         public double? miktar { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50), Required(ErrorMessage = "Birim kýsmý boþ geçilemez."), Display(Name = "Birim")]
         public string birim { get; set; }
 
         public virtual Yemek Yemek { get; set; }

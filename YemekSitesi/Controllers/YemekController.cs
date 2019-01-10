@@ -35,52 +35,63 @@ namespace YemekSitesi.Controllers
             return View(new Yemek());
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult YemekEkle(Yemek y, HttpPostedFileBase resimGelen)
         {
-            if (ModelState.IsValid == false) // validation false gelirse hata var
+            try
             {
-                ViewBag.kategori = new SelectList(db.Kategori.ToList(), "kategoriID", "kategoriAdi");
-                ViewBag.zorlukDerecesi = new SelectList(db.ZorlukDerecesi.ToList(), "zorlukDerecesiID", "zorlukTanımı");
-                ViewBag.ulke = new SelectList(db.Ulkeler.ToList(), "ulkeID", "ulkeAd");
-                return View();
-            }
-            if (resimGelen == null)
-            {
-                y.resim = "bos.png";
-            }
-            else
-            {
-                string yeniResimAdi = "";
-                ResimIslemleri r = new ResimIslemleri();
-                yeniResimAdi = r.Ekle(resimGelen,"Yemekler");
-                //yeniResimAdi = new ResimIslem().Ekle(resimGelen);
-
-                if (yeniResimAdi == "uzanti")
+                if (ModelState.IsValid == false) // validation false gelirse hata var
                 {
                     ViewBag.kategori = new SelectList(db.Kategori.ToList(), "kategoriID", "kategoriAdi");
                     ViewBag.zorlukDerecesi = new SelectList(db.ZorlukDerecesi.ToList(), "zorlukDerecesiID", "zorlukTanımı");
                     ViewBag.ulke = new SelectList(db.Ulkeler.ToList(), "ulkeID", "ulkeAd");
-                    ViewData["Hata"] = "Lütfen .png veya .jpg uzantılı dosya giriniz.";
                     return View();
                 }
-                else if (yeniResimAdi == "boyut")
+                if (resimGelen == null)
                 {
-                    ViewBag.kategori = new SelectList(db.Kategori.ToList(), "kategoriID", "kategoriAdi");
-                    ViewBag.zorlukDerecesi = new SelectList(db.ZorlukDerecesi.ToList(), "zorlukDerecesiID", "zorlukTanımı");
-                    ViewBag.ulke = new SelectList(db.Ulkeler.ToList(), "ulkeID", "ulkeAd");
-                    ViewData["Hata"] = "En fazla 1MB boyutunda dosya girebilirsiniz.";
-                    return View();
+                    y.resim = "bos.png";
                 }
                 else
                 {
-                    y.resim = yeniResimAdi;
+                    string yeniResimAdi = "";
+                    ResimIslemleri r = new ResimIslemleri();
+                    yeniResimAdi = r.Ekle(resimGelen, "Yemekler");
+                    //yeniResimAdi = new ResimIslem().Ekle(resimGelen);
+
+                    if (yeniResimAdi == "uzanti")
+                    {
+                        ViewBag.kategori = new SelectList(db.Kategori.ToList(), "kategoriID", "kategoriAdi");
+                        ViewBag.zorlukDerecesi = new SelectList(db.ZorlukDerecesi.ToList(), "zorlukDerecesiID", "zorlukTanımı");
+                        ViewBag.ulke = new SelectList(db.Ulkeler.ToList(), "ulkeID", "ulkeAd");
+                        ViewData["Hata"] = "Lütfen .png veya .jpg uzantılı dosya giriniz.";
+                        return View();
+                    }
+                    else if (yeniResimAdi == "boyut")
+                    {
+                        ViewBag.kategori = new SelectList(db.Kategori.ToList(), "kategoriID", "kategoriAdi");
+                        ViewBag.zorlukDerecesi = new SelectList(db.ZorlukDerecesi.ToList(), "zorlukDerecesiID", "zorlukTanımı");
+                        ViewBag.ulke = new SelectList(db.Ulkeler.ToList(), "ulkeID", "ulkeAd");
+                        ViewData["Hata"] = "En fazla 1MB boyutunda dosya girebilirsiniz.";
+                        return View();
+                    }
+                    else
+                    {
+                        y.resim = yeniResimAdi;
+                    }
                 }
+                y.tarih = DateTime.Now;
+                Kullanici k = (Kullanici)Session["Kullanici"];
+                y.kullaniciID = k.kullaniciID;
+                db.Yemek.Add(y);
+                db.SaveChanges();
+                TempData["uyari"] = y.ad + " isimli yemek eklenmiştir";
             }
-            y.tarih = DateTime.Now;
-            Kullanici k = (Kullanici)Session["Kullanici"];
-            y.kullaniciID =k.kullaniciID ;
-            db.Yemek.Add(y);
-            db.SaveChanges();
+            catch (Exception)
+            {
+                TempData["tehlikeli"] = "Yemek eklerken bir hata olustu";
+                return RedirectToAction("YemekListele");
+            }
+            
             return RedirectToAction("YemekListele");
         }
         public ActionResult YemekDuzenle(int id)
@@ -93,64 +104,75 @@ namespace YemekSitesi.Controllers
             return View(y);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult YemekDuzenle(Yemek y, HttpPostedFileBase resimGelen)
         {
-            int id = (int)TempData["KullaniciID"];
-            Yemek ye = db.Yemek.Where(x => x.yemekID == id).SingleOrDefault();
-            if (ModelState.IsValid == false) // validation false gelirse hata var
+            try
             {
-                ViewBag.kategori = new SelectList(db.Kategori.ToList(), "kategoriID", "kategoriAdi");
-                ViewBag.zorlukDerecesi = new SelectList(db.ZorlukDerecesi.ToList(), "zorlukDerecesiID", "zorlukTanımı");
-                ViewBag.ulke = new SelectList(db.Ulkeler.ToList(), "ulkeID", "ulkeAd");
-                return View();
-            }
-            if (resimGelen != null)
-            {
-                ResimIslemleri r = new ResimIslemleri();
-                string deger = r.Ekle(resimGelen,"Yemekler");
-
-                if (deger == "uzanti")
-                {
-
-                    ViewBag.kategori = new SelectList(db.Kategori.ToList(), "kategoriID", "kategoriAdi");
-                    ViewBag.zorlukDerecesi = new SelectList(db.ZorlukDerecesi.ToList(), "zorlukDerecesiID", "zorlukTanımı");
-                    ViewBag.ulke = new SelectList(db.Ulkeler.ToList(), "ulkeID", "ulkeAd");
-                    ViewBag.Hata = "Lütfen .png veya .jpg uzantılı dosya giriniz.";
-                    return View(ye);
-                }
-                else if (deger == "boyut")
+                int id = (int)TempData["KullaniciID"];
+                Yemek ye = db.Yemek.Where(x => x.yemekID == id).SingleOrDefault();
+                if (ModelState.IsValid == false) // validation false gelirse hata var
                 {
                     ViewBag.kategori = new SelectList(db.Kategori.ToList(), "kategoriID", "kategoriAdi");
                     ViewBag.zorlukDerecesi = new SelectList(db.ZorlukDerecesi.ToList(), "zorlukDerecesiID", "zorlukTanımı");
                     ViewBag.ulke = new SelectList(db.Ulkeler.ToList(), "ulkeID", "ulkeAd");
-                    ViewBag.Hata = "Lütfen daha düşük boyutlu bir resim giriniz.";
-                    return View(ye);
+                    return View();
                 }
-                else
+                if (resimGelen != null)
                 {
-                    y.resim = deger;
+                    ResimIslemleri r = new ResimIslemleri();
+                    string deger = r.Ekle(resimGelen, "Yemekler");
+
+                    if (deger == "uzanti")
+                    {
+
+                        ViewBag.kategori = new SelectList(db.Kategori.ToList(), "kategoriID", "kategoriAdi");
+                        ViewBag.zorlukDerecesi = new SelectList(db.ZorlukDerecesi.ToList(), "zorlukDerecesiID", "zorlukTanımı");
+                        ViewBag.ulke = new SelectList(db.Ulkeler.ToList(), "ulkeID", "ulkeAd");
+                        ViewBag.Hata = "Lütfen .png veya .jpg uzantılı dosya giriniz.";
+                        return View(ye);
+                    }
+                    else if (deger == "boyut")
+                    {
+                        ViewBag.kategori = new SelectList(db.Kategori.ToList(), "kategoriID", "kategoriAdi");
+                        ViewBag.zorlukDerecesi = new SelectList(db.ZorlukDerecesi.ToList(), "zorlukDerecesiID", "zorlukTanımı");
+                        ViewBag.ulke = new SelectList(db.Ulkeler.ToList(), "ulkeID", "ulkeAd");
+                        ViewBag.Hata = "Lütfen daha düşük boyutlu bir resim giriniz.";
+                        return View(ye);
+                    }
+                    else
+                    {
+                        y.resim = deger;
+                    }
                 }
+                if (y.resim != null)
+                {
+                    // yeni resim başarılı eklendiyse
+                    if (ye.resim != "bos.png")
+                    {
+                        // eski resmi sil
+                        new ResimIslemleri().Sil(ye.resim, "Yemekler");
+                    }
+
+                    // yeni resmi at
+                    ye.resim = y.resim;
+                }
+
+                ye.ad = y.ad;
+                ye.kacKisilik = y.kacKisilik;
+                ye.pisirmeSuresi = y.pisirmeSuresi;
+                ye.kategoriID = y.kategoriID;
+                ye.aciklama = y.aciklama;
+                ye.ulkeID = y.ulkeID;
+                ye.zorlukDerecesiID = y.zorlukDerecesiID;
+                db.SaveChanges();
+                TempData["uyari"] = y.ad + " isimli yemek basarı ile duzenlenmiştir";
             }
-            if (ye.resim != null)
+            catch (Exception)
             {
-                // yeni resim başarılı eklendiyse
-                if (ye.resim != "bos.png")
-                {
-                    // eski resmi sil
-                    new ResimIslemleri().Sil(ye.resim,"Yemekler");
-                }
-
-                // yeni resmi at
-                ye.resim = y.resim;
+                TempData["tehlikeli"] = "Yemek eklerken bir hata olustu";
+                return RedirectToAction("YemekListele");
             }
-
-            ye.ad = y.ad;
-            ye.kacKisilik = y.kacKisilik;
-            ye.pisirmeSuresi = y.pisirmeSuresi;
-            ye.kategoriID = y.kategoriID;
-            ye.ulkeID = y.ulkeID;
-            ye.zorlukDerecesiID = y.zorlukDerecesiID;
-            db.SaveChanges();
             return RedirectToAction("YemekListele");
             
         }
@@ -161,15 +183,26 @@ namespace YemekSitesi.Controllers
         }
         public ActionResult YemekSil(int id)
         {
-            Yemek y = db.Yemek.Where(x => x.yemekID == id).SingleOrDefault();
-            ResimIslemleri r = new ResimIslemleri();
-            db.Mazeme.RemoveRange(db.Mazeme.Where(x => x.yemekID == id));
-            db.Tarif.RemoveRange(db.Tarif.Where(x => x.yemekID == id));
-            db.BesinDegerleri.RemoveRange(db.BesinDegerleri.Where(x => x.yemekID == id));
-            db.Yorum.RemoveRange(db.Yorum.Where(x => x.yemekID == id));
-            r.Sil(y.resim, "Yemekler");
-            db.Yemek.Remove(db.Yemek.Where(x => x.yemekID == id).SingleOrDefault());
-            db.SaveChanges();
+            try
+            {
+                Yemek y = db.Yemek.Where(x => x.yemekID == id).SingleOrDefault();
+                ResimIslemleri r = new ResimIslemleri();
+                string ad = y.ad;
+                db.Mazeme.RemoveRange(db.Mazeme.Where(x => x.yemekID == id));
+                db.Tarif.RemoveRange(db.Tarif.Where(x => x.yemekID == id));
+                db.BesinDegerleri.RemoveRange(db.BesinDegerleri.Where(x => x.yemekID == id));
+                db.Yorum.RemoveRange(db.Yorum.Where(x => x.yemekID == id));
+                r.Sil(y.resim, "Yemekler");
+                db.Yemek.Remove(db.Yemek.Where(x => x.yemekID == id).SingleOrDefault());
+                db.SaveChanges();
+                TempData["uyari"] = ad + " isimli yemek ve bilesenleri basarı ile silinmiştir";
+            }
+            catch (Exception)
+            {
+                TempData["tehlikeli"] = "Yemek silerken bir hata olustu";
+                return RedirectToAction("YemekListele");
+            }
+
             return RedirectToAction("YemekListele");
         }
 
@@ -183,13 +216,21 @@ namespace YemekSitesi.Controllers
             return View(t);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]//güvenlik amaclı kondu
         public ActionResult TarifEkle(Tarif t)
         {
             t.yemekID =(int)TempData["YemekID"];
             db.Tarif.Add(t);
             db.SaveChanges();
-            t.siraNo++;
-            return Redirect("/Yemek/TarifEkle/"+ t.yemekID);
+            List<Tarif> tarifler = db.Tarif.Where(x => x.yemekID == t.yemekID).ToList();
+            int sayac = 1;
+            foreach (Tarif item in tarifler)
+            {
+                item.siraNo = sayac;
+                db.SaveChanges();
+                sayac++;
+            }
+            return Redirect("/Yemek/TarifEkle/" + t.yemekID);
         }
 
 
@@ -201,14 +242,22 @@ namespace YemekSitesi.Controllers
             return View(t);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult TarifDuzenle(Tarif t)
         {
             t.tarifID = (int)TempData["tarifID"];
             Tarif ta = db.Tarif.Where(x => x.tarifID == t.tarifID).SingleOrDefault();
-            ta.siraNo = t.siraNo;
             ta.aciklama = t.aciklama;
             int id = (int)TempData["YemekID"];
             db.SaveChanges();
+            List<Tarif> tarifler = db.Tarif.Where(x=>x.yemekID==id).ToList();
+            int sayac = 1;
+            foreach (Tarif item in tarifler)
+            {
+                item.siraNo = sayac;
+                db.SaveChanges();
+                sayac++;
+            }
             return Redirect("/Yemek/YemekDetay/" + id );
         }
         public ActionResult TarifSil(int? id)
@@ -217,6 +266,14 @@ namespace YemekSitesi.Controllers
             int Id=(int)t.yemekID;
             db.Tarif.Remove(t);
             db.SaveChanges();
+            List<Tarif> tarifler = db.Tarif.Where(x => x.yemekID == Id).ToList();
+            int sayac = 1;
+            foreach (Tarif item in tarifler)
+            {
+                item.siraNo = sayac;
+                db.SaveChanges();
+                sayac++;
+            }
             return Redirect("/Yemek/YemekDetay/" + Id);
         }
 
@@ -230,6 +287,7 @@ namespace YemekSitesi.Controllers
             return View(m);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult MazemeEkle(Mazeme m)
         {
             m.yemekID = (int)TempData["YemekID"];
@@ -247,6 +305,7 @@ namespace YemekSitesi.Controllers
             return View(m);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult MazemeDuzenle(Mazeme m)
         {
             m.mazemeID = (int)TempData["MazemeID"];
@@ -275,6 +334,7 @@ namespace YemekSitesi.Controllers
             return View(m);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult BesinDegerleriEkle(BesinDegerleri m)
         {
             m.yemekID = (int)TempData["YemekID"];
@@ -290,6 +350,7 @@ namespace YemekSitesi.Controllers
             return View(m);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult BesinDegerleriDuzenle(BesinDegerleri m)
         {
             m.besinDegerID = (int)TempData["BesinDegerleriID"];

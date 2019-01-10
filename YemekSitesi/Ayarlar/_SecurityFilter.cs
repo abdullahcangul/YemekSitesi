@@ -12,17 +12,20 @@ namespace YemekSitesi.Ayarlar
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             string ControllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
-            if (HttpContext.Current.Session["Kullanici"] == null && ControllerName != "Anasayfa"&& ControllerName!="Login")
+            Kullanici k = (Kullanici)HttpContext.Current.Session["Kullanici"];
+            if ((k == null || k.aktifMi == false) && ControllerName != "Anasayfa" && ControllerName != "Login")
             {
-                filterContext.Result = new RedirectResult("/Login/Index");
+                filterContext.Result = new RedirectResult("/Anasayfa/Home");
                 return;
             }
-           
-            if (HttpContext.Current.Session["Kullanici"] != null )
+
+            if (HttpContext.Current.Session["Kullanici"] != null)
             {
-                Kullanici k = (Kullanici)HttpContext.Current.Session["Kullanici"];
-                if ( (  ControllerName == "Kategorik" || ControllerName == "Yonetim" || ControllerName == "Yorum")  && ControllerName != "Anasayfa"&& k.aktifMi == false )
+                Kullanici ku = (Kullanici)HttpContext.Current.Session["Kullanici"];
+                if (ku.adminMi == true && ku.aktifMi==true) { }
+                else if ((ControllerName == "Kategorik" || ControllerName == "Yonetim" || ControllerName == "Yorum") && ControllerName != "Anasayfa")
                 {
+
                     filterContext.Result = new RedirectResult("/Home/Index");
                     return;
                 }

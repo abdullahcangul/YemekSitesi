@@ -32,20 +32,20 @@
                                 <span class="my">@d.Month. @d.Year </span>
                             </div>
                             <div class="avatar">
-                                <a href="#"><img src="/Content/Resimler/Kullanicilar/@blog.Kullanici.resim" alt="" /><span>@blog.Kullanici.ad @blog.Kullanici.soyad </span></a>
+                                <a href="#"><img  src="/Content/Resimler/Kullanicilar/@blog.Kullanici.resim" alt="" /><span>@blog.Kullanici.ad @blog.Kullanici.soyad </span></a>
                             </div>
                         </div>
                         <div class="container">
                             <div class="entry-featured"><a href="#"><img style="width:288.68px;height:216.5px;" src="/Content/Resimler/Bloglar/@blog.resim" alt="" /></a></div>
                             <div class="entry-content">
                                 <h2><a href="/Anasayfa/Blog/@blog.blogID">@blog.baslik</a></h2>
-                                @if (@blog.icerik.Length > 175)
+                                @if (@blog.aciklama.Length > 175)
                                 {
-                                    <p>@blog.icerik.Substring(0, 175)...</p>
+                                    <p>@blog.aciklama.Substring(0, 100)</p>
                                 }
                                 else
                                 {
-                                    <p>@blog.icerik</p>
+                                    <p>@blog.aciklama</p>
                                 }
 
                             </div>

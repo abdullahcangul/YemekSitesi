@@ -1800,8 +1800,7 @@
     <Content Include="Content\Admin\xchart.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Resimler\Kullanicilar\bos.jpg" />
-    <Content Include="Content\Resimler\Kullanicilar\user.png" />
+    <Content Include="Content\Resimler\Kullanicilar\bos.png" />
     <Content Include="Content\Resimler\Yemekler\bos.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\social-chef\blog.html" />
@@ -2065,10 +2064,13 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Ayarlar\Eposta.cs" />
     <Compile Include="Ayarlar\ResimIslemleri.cs" />
     <Compile Include="Ayarlar\_SecurityFilter.cs" />
     <Compile Include="Controllers\AnasayfaController.cs" />
@@ -2084,6 +2086,7 @@
     </Compile>
     <Compile Include="Models\BesinDegerleri.cs" />
     <Compile Include="Models\Blog.cs" />
+    <Compile Include="Models\Iletisim.cs" />
     <Compile Include="Models\Kategori.cs" />
     <Compile Include="Models\Kullanici.cs" />
     <Compile Include="Models\Mazeme.cs" />
@@ -2155,6 +2158,10 @@
     <Content Include="Views\Login\PartialViews\_KullaniciResim.cshtml" />
     <Content Include="Views\Login\PartialViews\_ErisimListesi.cshtml" />
     <Content Include="Views\Shared\__KategoriBlogResimsizListele.cshtml" />
+    <Content Include="Views\Kategorik\IletisimListele.cshtml" />
+    <Content Include="Views\Kategorik\IletisimDetay.cshtml" />
+    <Content Include="Views\Login\SifremiUnuttum.cshtml" />
+    <Content Include="Views\Anasayfa\hataSayfasi.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

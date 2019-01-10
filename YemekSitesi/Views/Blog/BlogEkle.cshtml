@@ -4,6 +4,10 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+@section header{
+   
+}
+
 <div class="col-lg-12">
     <section class="panel">
         <header class="panel-heading">
@@ -13,6 +17,7 @@
         <div class="panel-body">
             @using (Html.BeginForm("BlogEkle", "Blog", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
+                @Html.AntiForgeryToken()
 
                 if (ViewData["Hata"] != null)
                 {
@@ -30,8 +35,8 @@
                     @Html.TextBoxFor(x => x.baslik, new { @class = "form-control", placeholder = "Baslık giriniz" })
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(x => x.icerik)
-                    @Html.TextBoxFor(x => x.icerik, new { @class = "form-control", @placeholder = "Icerik kisilik" })
+                    @Html.LabelFor(x => x.aciklama)
+                    @Html.TextBoxFor(x => x.aciklama, new { @class = "form-control", @placeholder = "Aciklama giriniz" })
                 </div>
 
                 <div class="form-group">
@@ -44,12 +49,36 @@
                 </div>
 
 
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section class="panel">
+                            <header class="panel-heading">
+                                İcerik
+                            </header>
+                            <div class="panel-body">
+                                <div class="form">
+
+                                    <div class="form-group">
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control ckeditor" name="icerik" rows="6"></textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
 
                 <button type="submit" class="btn btn-info pull-right ">Ekle</button>
 
             }
 
         </div>
-    </section>
+</section>
 </div>
+@section footer{
 
+    <script type="text/javascript" src="/Content/Admin/assets/ckeditor/ckeditor.js"></script>
+}

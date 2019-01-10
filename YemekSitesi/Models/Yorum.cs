@@ -15,13 +15,13 @@ namespace YemekSitesi.Models
 
         public int? blogID { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50), Required(ErrorMessage = "Adi kýsmý boþ geçilemez."), Display(Name = "Adi")]
         public string ad { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50), Required(ErrorMessage = "Soyad kýsmý boþ geçilemez."), Display(Name = "Soyad")]
         public string soyad { get; set; }
 
-        [StringLength(500)]
+        [StringLength(500), Required(ErrorMessage = "Ýçerik kýsmý boþ geçilemez."), Display(Name = "Ýçerik")]
         public string icerik { get; set; }
 
         [Column(TypeName = "smalldatetime")]

@@ -13,6 +13,18 @@
             <li>@Model.baslik</li>
         </ul>
     </nav>
+    @if (TempData["tehlikeli"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["tehlikeli"]
+        </div>
+    }
+    @if (TempData["uyari"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["uyari"]
+        </div>
+    }
     <!--//breadcrumbs-->
     <!--row-->
     <main class="main" role="main">
@@ -36,9 +48,9 @@
                         </div>
                     </div>
                     <div class="container">
-                        <div class="entry-featured"><a href="#"><img width="800px;" src="/Content/Resimler/Bloglar/@Model.resim" alt="" /></a></div>
+                        <div class="entry-featured"><a href="#"><img width="780" src="/Content/Resimler/Bloglar/@Model.resim" alt="" /></a></div>
                         <div class="entry-content">
-                            <p class="lead">@Model.icerik </p>
+                            <p class="lead"> @Html.Raw(Model.icerik)  </p>
 
                         </div>
                     </div>
@@ -47,69 +59,70 @@
                 <!--comments-->
                 @if (@Model.Yorum != null)
                 {
-                <div class="comments" id="comments">
-                    <h2>Yorum Sayısı @Model.Yorum.Count </h2>
-                    @foreach (var yorum in Model.Yorum)
-                    {
-                        if (yorum.onaylimi==true)
+                    <div class="comments" id="comments">
+                        <h2>Yorum Sayısı @Model.Yorum.Where(x => x.onaylimi == true).Count() </h2>
+                        @foreach (var yorum in Model.Yorum)
                         {
-                            <ol class="comment-list">
-                                <!--comment-->
-                                <li class="comment depth-1">
+                            if (yorum.onaylimi == true)
+                            {
+                                <ol class="comment-list">
+                                    <!--comment-->
+                                    <li class="comment depth-1">
 
-                                    <div class="comment-box">
-                                        <div class="comment-author meta">
-                                            <strong>@yorum.ad @yorum.soyad</strong>  <a href="#" class="comment-reply-link"> @yorum.tarih</a>
+                                        <div class="comment-box">
+                                            <div class="comment-author meta">
+                                                <strong>@yorum.ad @yorum.soyad</strong>  <a href="#" class="comment-reply-link"> @yorum.tarih</a>
+                                            </div>
+                                            <div class="comment-text">
+                                                <p>@yorum.icerik</p>
+                                            </div>
                                         </div>
-                                        <div class="comment-text">
-                                            <p>@yorum.icerik</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <!--//comment-->
-                                <!--//comment-->
+                                    </li>
+                                    <!--//comment-->
+                                    <!--//comment-->
 
-                            </ol>
+                                </ol>
 
+                            }
                         }
-                    }
-                </div>
+                    </div>
                 }
                 <!--//comments-->
                 <!--respond-->
-                    <div class="comment-respond" id="respond">
-                        <h2>Leave a reply</h2>
-                        <div class="container">
-                            <p><strong>Note:</strong> Comments on the web site reflect the views of their authors, and not necessarily the views of the socialchef internet portal. Requested to refrain from insults, swearing and vulgar expression. We reserve the right to delete any comment without notice explanations.</p>
-                            <p>Your email address will not be published. Required fields are signed with <span class="req">*</span></p>
+                <div class="comment-respond" id="respond">
+                    <h2>Yorum yap</h2>
+                    <div class="container">
+                        <p><strong>Not:</strong> Bloglarda yer alan bilgiler yazarlarının görüşlerini yansıtmaktadır. Lütfen hakaret, küfür ve kaba ifadeler kullanmayın.</p>
+                        <p>Bildiride bulunmadan herhangi bir yorumu silme hakkımızı korumaktayız. <span class="req">*</span></p>
 
-                            @using (Html.BeginForm())
-                            {
-                                <div class="f-row">
-                                    <div class="third">
-                                        <input type="text" name="ad" placeholder="isminizi  giriniz" />
-                                        <span class="req">*</span>
-                                    </div>
-                                    <div class="third">
-                                        <input type="text" name="soyad" placeholder="soyadınızı  giriniz" />
-                                        <span class="req">*</span>
-                                    </div>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="f-row">
+                                <div class="third">
+                                    <input type="text" name="ad" placeholder="İsminizi  giriniz" required/>
+                                    <span class="req">*</span>
                                 </div>
-                                <div class="f-row">
-                                    <textarea  name="icerik"></textarea>
+                                <div class="third">
+                                    <input type="text" name="soyad" placeholder="Soyadınızı  giriniz" required/>
+                                    <span class="req">*</span>
                                 </div>
+                            </div>
+                            <div class="f-row">
+                                <textarea name="icerik" required></textarea>
+                            </div>
 
-                                <div>
-                                    <div class="third bwrap">
-                                        <button class="pull-right" name="id" val type="submit" value="@Model.blogID">Ekle</button>
-                                    </div>
+                            <div>
+                                <div class="third bwrap">
+                                    <button class="pull-right" name="id" val type="submit" value="@Model.blogID">Ekle</button>
                                 </div>
+                            </div>
 
-                            }
+                        }
 
 
-                        </div>
                     </div>
+                </div>
                 <!--//respond-->
             </section>
             <!--//content-->
@@ -117,7 +130,7 @@
             <aside class="sidebar one-fourth">
                 <div class="widget">
                     <ul class="categories right">
-                        <li><a  href="/Anasayfa/Bloglar">Tum Kateguriler</a></li>
+                        <li><a href="/Anasayfa/Bloglar">Tum Kateguriler</a></li>
                         @Html.Action("resimsizKategoriler", "Anasayfa")
                     </ul>
                 </div>
@@ -129,7 +142,7 @@
             <!--//right sidebar-->
         </div>
     </main>
-    
+
     <!--//row-->
 </div>
 

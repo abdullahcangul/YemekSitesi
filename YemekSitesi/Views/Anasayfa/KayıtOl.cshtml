@@ -4,6 +4,18 @@
     Layout = "~/Views/Shared/_LayoutKullanici.cshtml";
 }
 <br /><br /><br /><br /><br /><br />
+@if (TempData["tehlikeli"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["tehlikeli"]
+    </div>
+}
+@if (TempData["uyari"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["uyari"]
+    </div>
+}
 <main class="main" role="main">
     <!--wrap-->
     <div class="wrap clearfix">
@@ -11,46 +23,49 @@
         <div class="row">
             @using (Html.BeginForm("KayıtOl", "Anasayfa", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
+                @Html.ValidationSummary()
+                @Html.AntiForgeryToken()
                 <section class="content center full-width">
                     <div class="modal container">
                         <h3>Kayıt Ol</h3>
                         <div class="form-group">
                             @Html.LabelFor(x => x.ad)
-                            @Html.TextBoxFor(x => x.ad, new { @class = "form-control", placeholder = "Kullanıcı adını giriniz" })
-                        </div>
+                            @Html.TextBoxFor(x => x.ad, new { @class = "form-control", placeholder = "Kullanıcı adını giriniz", @required = "true" })
+                        </div><br />
                         <div class="f-row">
                             @Html.LabelFor(x => x.soyad)
-                            @Html.TextBoxFor(x => x.soyad, new { @class = "form-control", placeholder = "Kullanıcı Soyadını giriniz" })
+                            @Html.TextBoxFor(x => x.soyad, new { @class = "form-control", placeholder = "Kullanıcı Soyadını giriniz", @required = "true" })
                         </div>
                         <div class="f-row">
                             @Html.LabelFor(x => x.eposta)
-                            @Html.TextBoxFor(x => x.eposta, new { @class = "form-control", placeholder = "Kullanıcı epostasını giriniz" })
-                        </div>
-                        <div class="f-row">
-                            @Html.LabelFor(x => x.dogumTarihi)
-                            @Html.TextBoxFor(x => x.dogumTarihi, new { @class = "form-control", placeholder = "Dogum Tarihini giriniz" })
+                            @Html.TextBoxFor(x => x.eposta, new { @class = "form-control", placeholder = "Kullanıcı epostasını giriniz", @required = "true" })
                         </div>
                         <div class="f-row">
                             @Html.LabelFor(x => x.meslegi)
-                            @Html.TextBoxFor(x => x.meslegi, new { @class = "form-control", placeholder = "Mesleginizi giriniz" })
+                            @Html.TextBoxFor(x => x.meslegi, new { @class = "form-control", placeholder = "Mesleginizi giriniz", @required = "true" })
                         </div>
                         <div class="f-row">
                             @Html.LabelFor(x => x.ulkesi)
-                            @Html.TextBoxFor(x => x.ulkesi, new { @class = "form-control", placeholder = "Ulke adını giriniz" })
+                            @Html.TextBoxFor(x => x.ulkesi, new { @class = "form-control", placeholder = "Ulke adını giriniz", @required = "true" })
                         </div>
                         <div class="f-row">
                             @Html.LabelFor(x => x.sifre)
-                            @Html.PasswordFor(x => x.sifre, new { @class = "form-control", placeholder = "Sifre giriniz" })
+                            @Html.PasswordFor(x => x.sifre, new { @class = "form-control", placeholder = "Sifre giriniz", @required = "true" })
                         </div>
+                        <div class="f-row">
+                            @Html.LabelFor(x => x.dogumTarihi):
+                            @Html.TextBoxFor(x => x.dogumTarihi, new { @class = "form-control", placeholder = "Dogum Tarihini giriniz", type = "date", @required = "true" })
+                        </div>
+
                         <div class="f-row">
                             <label>Resim</label>
                             <input type="file" name="resimGelen" class="form-control" placeholder="Resim giriniz.">
                         </div>
 
                         <div class="f-row bwrap">
-                            <input type="submit" value="KayıtOl">
+                            <input type="submit" value="Kayıt Ol">
                         </div>
-                        <p>Hesapbınız var ise  <a href="login.html">Giris Yap</a></p>
+                        <p>Zaten bir hesabınız var mı?  <a href="/Login/Index">Giris Yap</a></p>
                     </div>
                 </section>
             }

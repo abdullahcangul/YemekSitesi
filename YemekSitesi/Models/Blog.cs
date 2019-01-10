@@ -17,21 +17,23 @@ namespace YemekSitesi.Models
 
         public int blogID { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50),Required(ErrorMessage = "Baslik kısmı boş geçilemez."), Display(Name = "Baslik")]
         public string baslik { get; set; }
-
-        [StringLength(4000)]
+        [Required(ErrorMessage = "İçerik kısmı boş geçilemez."), Display(Name = "İçerik")]
         public string icerik { get; set; }
 
         [StringLength(50)]
         public string resim { get; set; }
 
-        [Column(TypeName = "smalldatetime")]
+        [Column(TypeName = "smalldatetime"),Display(Name = "Tarih")]
         public DateTime? tarih { get; set; }
-
+        [Display(Name = "Kullanıcılar")]
         public int? kullanıcıID { get; set; }
-
+        [Display(Name = "Kategoriler")]
         public int? KategoriID { get; set; }
+
+        [StringLength(100), Required(ErrorMessage = "Açıklama kısmı boş geçilemez."), Display(Name = "Açıklama")]
+        public string aciklama { get; set; }
 
         public virtual Kategori Kategori { get; set; }
 

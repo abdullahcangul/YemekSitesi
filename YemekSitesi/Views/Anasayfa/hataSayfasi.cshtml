@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "hataSayfasi";
+    Layout = "~/Views/Shared/_LayoutKullanici.cshtml";
+}
+<br /><br /><br /><br /><br /><br /><br /><br />
+<main class="main" role="main">
+    <!--wrap-->
+    <div class="wrap clearfix">
+        <!--row-->
+        <div class="row">
+            <!--content-->
+            <section class="content three-fourth">
+                <!--row-->
+                <div class="row">
+                    <div class="one-third">
+                        <div class="error-container">
+                            <span class="error_type">404</span>
+                            <span class="error_text">Sayfa Bulunamadı</span>
+                        </div>
+                    </div>
+
+                    <div class="two-third">
+                        <div class="container">
+                            <p> İstediğiniz sayfa bulunamadı veya veritabanından kaldırıldı.</p>
+                            <p>
+                                Bunun bir hata olduğunu düşünüyorsanız<a href="/Anasayfa/Iletisim">iletisime gecin</a>. Anlayısınız için tesekkür ederiz!
+                            </p>
+                            <p>Anasayfaya dönebilirsin <a href="/Anasayfa/Home">Anasayfaya git</a> arama yapabilirsin </p>
+                        </div>
+                    </div>
+                </div>
+                <!--//row-->
+            </section>
+            <!--//content-->
+            <!--sidebar-->
+            <aside class="sidebar one-fourth">
+                <div class="widget">
+                    <h3>Arama</h3>
+                    @using (Html.BeginForm("Arama", "Anasayfa"))
+                    {
+                        <div class="f-row">
+                            <input type="text" name="ad" placeholder="Aramak istedigin terimi gir" />
+                        </div>
+
+                        <div class="f-row ">
+                            <input type="submit" value="     Hemen Aramaya Basla!      " />
+                        </div>
+                    }
+                </div>
+            </aside>
+            <!--//sidebar-->
+        </div>
+        <!--//row-->
+    </div>
+    <!--//wrap-->
+</main>

@@ -1,9 +1,22 @@
 ﻿@model List<Kategori>
 
 
-    <ul class="boxed">
-        @foreach (var kategori in @Model)
-        {
-            <li class="light"><a href="/Anasayfa/Arama/@kategori.kategoriID" title="@kategori.kategoriAdi"><img src="/Content/Resimler/Kategoriler/@kategori.resim"/> <span>@kategori.kategoriAdi</span></a></li>
-        }
-    </ul>
+<ul class="boxed">
+    @foreach (var kategori in @Model)
+    {
+        <li class="light">
+            <a href="/Anasayfa/Arama/@kategori.kategoriID" title="@kategori.kategoriAdi">
+                <img style="width:100px;height:70px" src="/Content/Resimler/Kategoriler/@kategori.resim" /> <span>
+                    @if (kategori.kategoriAdi.Count() <= 9)
+                    {
+                        @kategori.kategoriAdi
+                    }
+                    else
+                    {
+                        
+                    }
+                </span>
+            </a>
+        </li>
+    }
+</ul>

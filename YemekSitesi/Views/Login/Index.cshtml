@@ -23,22 +23,21 @@
                     <h3>Giriş</h3>
                     @using (Html.BeginForm())
                     {
+                        @Html.AntiForgeryToken()
                         <div class="f-row">
-                            <input name="eposta" type="text" placeholder="Eposta adresinizi girin" />
+                            <input name="eposta" type="email" placeholder="Eposta adresinizi girin" maxlength="25" required />
                         </div>
                         <div class="f-row">
-                            <input name="sifre" type="password" placeholder="Sifrenizi giriniz" />
+                            <input name="sifre" type="password" placeholder="Sifrenizi giriniz" maxlength="15" minlength="4" required />
                         </div>
 
-                        <div class="f-row">
-                            <input type="checkbox" />
-                            <label>Beni Hatirla</label>
-                        </div>
+                    <br />  
 
                         <div class="f-row bwrap">
                             <input type="submit" value="Giriş" />
                         </div>
-                        <p>Henüz kayıt olmadiniz mi? <a href="register.html">Kayıt ol.</a></p>
+                        <p><a href="/Login/SifremiUnuttum">Sifremi unuttum !</a></p>
+                        <p>Henüz kayıt olmadınız mı? <a href="/AnaSayfa/KayıtOl">Kayıt ol.</a></p>
                     }
                 </div>
             </section>

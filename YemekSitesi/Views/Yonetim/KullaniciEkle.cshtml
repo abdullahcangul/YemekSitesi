@@ -14,7 +14,7 @@
         <div class="panel-body">
             @using (Html.BeginForm("KullaniciEkle", "Yonetim", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
-
+                @Html.AntiForgeryToken()
                 if (ViewData["Hata"] != null)
                 {
                     <div class="alert alert-danger alert-dismissible">
@@ -47,9 +47,10 @@
                     @Html.TextBoxFor(x => x.ulkesi, new { @class = "form-control", @placeholder = "Ulkesini giriniz" })
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(x => x.dogumTarihi)
-                    @Html.TextBoxFor(x => x.dogumTarihi, new { @class = "form-control", @placeholder = "Dogum Tarihi giriniz" })
-                </div>
+                @Html.LabelFor(x => x.dogumTarihi)
+                @Html.TextBoxFor(x => x.dogumTarihi, new { @class = "form-control ",type="date", @placeholder = "Dogum Tarihi giriniz" })
+            </div>
+
                 <div class="form-group">
                     @Html.LabelFor(x => x.sifre)
                     @Html.PasswordFor(x => x.sifre, new { @class = "form-control", @placeholder = "Sifre girin" })

@@ -15,10 +15,10 @@ namespace YemekSitesi.Models
             Blog = new HashSet<Blog>();
             Yemek = new HashSet<Yemek>();
         }
-
+        [Display(Name = "Kategoriler")]
         public int kategoriID { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50), Required(ErrorMessage = "Kategori Adi kýsmý boþ geçilemez."), Display(Name = "Kategori Adi")]
         public string kategoriAdi { get; set; }
 
         [StringLength(50)]

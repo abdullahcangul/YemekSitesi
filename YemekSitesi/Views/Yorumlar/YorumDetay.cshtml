@@ -9,13 +9,26 @@
     <div class="panel-body bio-graph-info">
         <h1>Yorum</h1>
         <div class="row">
-            <div class="col-md-1">
-                <p><span>Adı</span>: @Model.ad </p>
+            <div class="col-md-2">
+                <p><span>Yorum yapanın adı</span>: @Model.ad </p>
             </div>
-            <div class="col-md-9">
-                <p><span>Yorum icerigi: </span>: @Model.icerik</p>
+            <div class="col-md-2">
+                <p>
+                    <span>Neye yapıldı</span>:
+                    @if (@Model.Blog != null)
+                    {
+                        @Model.Blog.baslik
+                    }
+                    else
+                    {
+                        @Model.Yemek.ad
+                    }
+                </p>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-6">
+                <p><span>Yorum icerigi </span>: @Model.icerik</p>
+            </div>
+            <div class="col-md-2">
                 @if (Model.onaylimi == true)
                 {
                     <a href="/Yorumlar/YorumOnay/@Model.yorumID" class="btn btn-sm btn-success">Onay Kaldır</a>

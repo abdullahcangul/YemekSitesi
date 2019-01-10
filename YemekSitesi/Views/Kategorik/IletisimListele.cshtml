@@ -1,0 +1,98 @@
+﻿@model List<Iletisim>
+@{
+
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@section header{
+    @*<link href="/Content/Admin/assets/advanced-datatable/media/css/demo_page.css" rel="stylesheet" />*@
+    <link href="/Content/Admin/assets/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
+}
+@if (TempData["tehlikeli"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["tehlikeli"]
+    </div>
+}
+@if (TempData["uyari"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["uyari"]
+    </div>
+}
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Iletisim
+            </header>
+            <div class="panel-body">
+                <div class="adv-table">
+                    <table class="display table table-bordered table-striped" id="example">
+                        <thead>
+                            <tr>
+                                <th><i class="icon-adn"></i> Adı</th>
+                                <th><i class="icon-envelope"></i> Eposta </th>
+                                <th><i class="icon-themeenergy_space-needle"></i> Tel </th>
+                                <th><i class="icon-info"></i> İçerik </th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Iletisim ıletisim in Model)
+                            {
+                                <tr>
+
+                                    <td><a href="#">@ıletisim.isim</a></td>
+
+                                    <td><a href="#">@ıletisim.eposta</a></td>
+                                    <td><a href="#">@ıletisim.telefon</a></td>
+
+                                    <td><a href="#">@ıletisim.icerik.Substring(0, 2)</a></td>
+
+
+                                    <td>
+                                        <a href="/Kategorik/IletisimDetay/@ıletisim.ID" class="btn btn-primary btn-xs"> <i class="icon-align-center"></i></a>
+                                        <a href="/Kategorik/IletisimSil/@ıletisim.ID" onclick="return confirm('Silmek istediğinizden emin misiniz ?')" class="btn btn-danger btn-xs"><i class="icon-trash "></i></a>
+
+                                    </td>
+                                </tr>
+
+                            }
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+@section footer{
+
+    <script type="text/javascript" language="javascript" src="/Content/Admin/assets/advanced-datatable/media/js/jquery.dataTables.js"></script>
+
+
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function () {
+            $('#example').dataTable({
+                "aaSorting": [[4, "desc"]],
+                "oLanguage": {
+                    "sSearch": "Ara:",
+                    "sLengthMenu": "Getir _MENU_ kayıt",
+                    "sInfo": "Göster _START_ den _END_ kadar _TOTAL_ madde",
+                    "sEmptyTable": "Veri Bulunanadı",
+                    "oPaginate": {
+                        "sNext": "ileri",
+                        "sPrevious": "Geri"
+                    }
+                },
+
+            });
+        });
+    </script>
+}

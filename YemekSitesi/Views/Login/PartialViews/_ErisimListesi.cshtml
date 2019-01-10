@@ -3,14 +3,14 @@
 <ul class="sidebar-menu" id="nav-accordion">
     <li>
         <a class="active" href="/Home/Index">
-            <i class="icon-dashboard"></i>
-            <span>Dashboard</span>
+            <i class="icon-home"></i>
+            <span>Anasayfa</span>
         </a>
     </li>
 
     <li class="sub-menu">
         <a href="javascript:;">
-            <i class="icon-laptop"></i>
+            <i class="icon-food"></i>
             <span>Yemek</span>
         </a>
         <ul class="sub">
@@ -20,7 +20,7 @@
     </li>
     <li class="sub-menu">
         <a href="javascript:;">
-            <i class="icon-laptop"></i>
+            <i class="icon-briefcase"></i>
             <span>Blog</span>
         </a>
         <ul class="sub">
@@ -30,19 +30,28 @@
     </li>
     <li class="sub-menu">
         <a href="javascript:;">
-            <i class="icon-laptop"></i>
+            <i class="icon-comments"></i>
             <span>Yorum</span>
         </a>
         <ul class="sub">
             <li><a href="/Yorumlar/YorumListele">Yorum Listesi</a></li>
         </ul>
     </li>
+
     @if (Model.adminMi == true)
     {
-
         <li class="sub-menu">
             <a href="javascript:;">
-                <i class="icon-laptop"></i>
+                <i class="icon-envelope"></i>
+                <span>İletişim</span>
+            </a>
+            <ul class="sub">
+                <li><a href="/Kategorik/IletisimListele">İletişim Listesi</a></li>
+            </ul>
+        </li>
+        <li class="sub-menu">
+            <a href="javascript:;">
+                <i class="icon-user"></i>
                 <span>Kullanici işlemleri</span>
             </a>
             <ul class="sub">
@@ -52,7 +61,7 @@
         </li>
         <li class="sub-menu">
             <a href="javascript:;">
-                <i class="icon-laptop"></i>
+                <i class="icon-bookmark"></i>
                 <span>Tanımlar</span>
             </a>
             <ul class="sub">

@@ -18,7 +18,7 @@ namespace YemekSitesi.Models
         [Key]
         public int ulkeID { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50), Required(ErrorMessage = "Ulke Adý kýsmý boþ geçilemez."), Display(Name = "Ulke Adý")]
         public string ulkeAd { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

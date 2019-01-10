@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "SifremiUnuttum";
+    Layout = "~/Views/Shared/_LayoutKullanici.cshtml";
+}
+
+<main class="main" style="margin-top:100px;" role="main">
+    <!--wrap-->
+    <div class="wrap clearfix">
+        <!--row-->
+        <div class="row">
+
+            <!--content-->
+            <section class="content center full-width">
+                <div class="modal container">
+                    @if (TempData["uyari"] != null)
+                    {
+                        <div class="alert alert-success">
+                            @TempData["uyari"]
+                        </div>
+                    }
+                    @if (ViewBag.sonuc != null)
+                    {
+                        <div class="alert alert-danger " role="alert">
+                            @ViewBag.sonuc
+                        </div>
+                    }
+                    <h3>Sifre Yenileme</h3>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="f-row">
+                            <input name="eposta" type="text" placeholder="Eposta adresinizi girin" />
+                        </div>
+                        <br />
+
+                        <div class="f-row bwrap">
+                            <input type="submit" value="Gönder" />
+                        </div>
+                    }
+                </div>
+            </section>
+            <!--//content-->
+        </div>
+        <!--//row-->
+    </div>
+    <!--//wrap-->
+</main>
+

@@ -20,7 +20,7 @@
         <div class="panel-body">
             @using (Html.BeginForm("YemekDuzenle", "Yemek", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
-
+                @Html.AntiForgeryToken()
                 if (ViewData["Hata"] != null)
                 {
                     <div class="alert alert-danger alert-dismissible">

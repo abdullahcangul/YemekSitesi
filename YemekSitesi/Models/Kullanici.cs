@@ -18,27 +18,26 @@ namespace YemekSitesi.Models
 
         public int kullaniciID { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50), Required(ErrorMessage = "Ad kýsmý boþ geçilemez."), Display(Name = "Ad")]
         public string ad { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50), Required(ErrorMessage = "Soyad kýsmý boþ geçilemez."), Display(Name = "Soyad")]
         public string soyad { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50), Required(ErrorMessage = "Meslegi kýsmý boþ geçilemez."), Display(Name = "Meslegi")]
         public string meslegi { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50), Required(ErrorMessage = "Ulkesi kýsmý boþ geçilemez."), Display(Name = "Ulkesi")]
         public string ulkesi { get; set; }
 
-        [Column(TypeName = "smalldatetime")]
+        [Column(TypeName = "smalldatetime"),Display(Name ="Dogum Tarihi")]
         public DateTime? dogumTarihi { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50), EmailAddress(ErrorMessage = "Uygun bir {0} giriniz."), Display(Name = "E-Posta")]
         public string eposta { get; set; }
 
         public bool? adminMi { get; set; }
-
-        [StringLength(50)]
+     
         public string sifre { get; set; }
 
         public bool? aktifMi { get; set; }

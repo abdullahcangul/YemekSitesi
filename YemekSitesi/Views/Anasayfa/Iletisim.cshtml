@@ -1,7 +1,19 @@
-﻿
+﻿@model Iletisim
 @{
     ViewBag.Title = "Iletisim";
     Layout = "~/Views/Shared/_LayoutKullanici.cshtml";
+}
+@if (TempData["tehlikeli"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["tehlikeli"]
+    </div>
+}
+@if (TempData["uyari"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["uyari"]
+    </div>
 }
 <main class="main" role="main">
     <!--wrap-->
@@ -11,25 +23,35 @@
             <!--content-->
             <section class="content center full-width">
                 <div class="modal container">
-                    <form method="post" action="http://www.themeenergy.com/themes/html/social-chef/contact_form_message.php" name="contactform" id="contactform">
-                        <h3>iletisime Geç</h3>
-                        <div id="message" class="alert alert-danger"></div>
+
+                    <h3>iletisime Geç</h3>
+                    @Html.ValidationSummary()
+                    @if (ViewBag.Sonuc != null)
+                    {
+                    <div id="message" class="alert alert-info">@ViewBag.Sonuc</div>
+                    }
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
                         <div class="f-row">
-                            <input type="text" placeholder="Your name" name="">
+                            <input type="text" placeholder="İsim" name="isim" required>
                         </div>
                         <div class="f-row">
-                            <input type="email" placeholder="Your email" name="">
+                            <input type="email" placeholder="E-posta" name="eposta" required>
                         </div>
                         <div class="f-row">
-                            <input type="number" placeholder="Your phone number" name="">
+                            <input type="number" placeholder="Telefon" name="telefon" >
                         </div>
                         <div class="f-row">
-                            <textarea placeholder="Your message" name="aciklama"></textarea>
+                            <textarea placeholder="İleti" name="icerik" required></textarea>
                         </div>
                         <div class="f-row bwrap">
                             <input type="submit" value="Gönder">
+
                         </div>
-                    </form>
+                    }
+
                 </div>
             </section>
             <!--//content-->
